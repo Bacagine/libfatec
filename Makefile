@@ -39,6 +39,8 @@ clear_buffer.o: clear_buffer.c fatec.h
 	gcc -c clear_buffer.c
 developers.o: developers.c fatec.h
 	gcc -c developers.c
+#install:
+#	cp fatec.h /usr/include/
 clean:
 	rm -f *.o
 realclean: clean
