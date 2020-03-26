@@ -3,8 +3,8 @@
  *                                                                                *
  * Copyright (C) 2019 - 2020                                                      *
  *                                                                                *
- * fatec.c: Arquivo com o desenvolvimento do prototipo das funções da biblioteca  *
- * fatec.h                                                                        *
+ * basic_math.c: Arquivo com o desenvolvimento das funções básicas de matematicas *
+ * da biblioteca fatec.h                                                          *
  *                                                                                *
  * fatec.c é um software livre; você pode redistribui-lo e/ou modificalo sob os   *
  * termos da Licença GNU Lesser General Public publicada pela Free Software       *
@@ -21,11 +21,109 @@
  *                  Luiz Dionizio             <luizgdsoares@hotmail.com>          *
  *                  Profº Ciro Cirne Trindade <ciroct@gmail.com>                  *
  *                                                                                *
- * Compilar com gcc fatec.c -o fatec -lm                                          *
- *                                                                                *
- * Data: 02/12/2019                                                               *
- * Data da última modificação: 21/12/2019                                         *
+ * Data: 21/02/2020                                                               *
+ * Data da última modificação: 21/02/2020                                         *
  **********************************************************************************/
 
 #include <stdio.h>
 #include "fatec.h"
+
+int Isoma(int n1, int n2){
+    int soma;
+    
+    soma = n1 + n2;
+    
+    return soma;
+}
+
+int Isubtracao(int n1, int n2){
+    int sub;
+    
+    sub = n1 - n2;
+    
+    return sub;
+}
+
+int Imultiplicacao(int n1, int n2){
+    int mult;
+    
+    mult = n1 * n2;
+    
+    return mult;
+}
+
+int Idivisao(int n1, int n2){
+    int div;
+    
+    div = n1 / n2;
+    
+    return div;
+}
+
+int Fsoma(float n1, float n2){
+    float soma;
+    
+    soma = n1 + n2;
+    
+    return soma;
+}
+
+
+int Fsubtracao(float n1, float n2){
+    float sub;
+    
+    sub = n1 - n2;
+    
+    return sub;
+}
+
+int Fmultiplicacao(float n1, float n2){
+    float mult;
+    
+    mult = n1 * n2;
+    
+    return mult;
+}
+
+
+int Fdivisao(float n1, float n2){
+    float div;
+    
+    div = n1 / n2;
+    
+    return div;
+}
+
+int Dsoma(double n1, double n2){
+    double soma;
+    
+    soma = n1 + n2;
+    
+    return soma;
+}
+
+
+int Dsubtracao(double n1, double n2){
+    double sub;
+    
+    sub = n1 - n2;
+    
+    return sub;
+}
+
+int Dmultiplicacao(double n1, double n2){
+    double mult;
+    
+    mult = n1 * n2;
+    
+    return mult;
+}
+
+
+int Ddivisao(double n1, double n2){
+    double div;
+    
+    div = n1 / n2;
+    
+    return div;
+}
