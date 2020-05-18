@@ -15,6 +15,8 @@
  * junto com o fatec.h; case contrario, veja:
  * <http://www.gnu.org/licenses/>.
  * 
+ * Versão: 20.05.18
+ * 
  * Desenvolvedores: Gustavo Bacagine          <gustavo.bacagine@protonmail.com>
  *                  José Eduardo              <joseeduardoolimpio@gmail.com>
  *                  Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com>
@@ -714,7 +716,5 @@ int Ddivisao(double n1, double n2);
  *
  * Essa função remove um cliente cadastrado no sistema */
 void remover_cliente(void);
-
-
 
 #endif // _FATEC_H
