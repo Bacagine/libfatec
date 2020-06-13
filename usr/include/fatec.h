@@ -15,7 +15,7 @@
  * junto com o fatec.h; case contrario, veja:
  * <http://www.gnu.org/licenses/>.
  *
- * Versão: 20.05.18
+ * Versão: 20.06.13
  * 
  * Desenvolvedores: Gustavo Bacagine          <gustavo.bacagine@protonmail.com>
  *                  José Eduardo              <joseeduardoolimpio@gmail.com>
@@ -31,8 +31,8 @@
 #ifndef _FATEC_H
 #define _FATEC_H
 
+#include <stdio.h>
 #include <stdbool.h>     // Biblioteca usada para manipular variaveis booleanas
-#include <stdlib.h>     // Biblioteca usada para usar funções do sistema
 #include <locale.h>    /* Biblioteca para poder usar a função setlocale 
                         * usada para colocar acentuação nas palavras */
 #include <math.h>    // Biblioteca para usar funções matematicas
@@ -40,6 +40,17 @@
 #include <string.h> // Biblioteca usada para manipular strings
 //#include <strings.h>
 #include <ctype.h>
+
+// Verifica se o sistema é do tipo unix like
+#ifdef __unix__
+    #include <stdlib.h> // Biblioteca usada para ultilizar comandos do Sistema Operacional
+    #define clear_terminal() system("clear");
+	#define pause() printf("\nPrecione qualquer tecla para continuar..."); getchar();
+// Verificar se o sistema é Windows ou se o programa foi compilado para Windows
+#elif defined(_WIN32) || defined(WIN32) || defined(__MINGW32__) || defined(_MCS_VER)
+    #include <stdlib.h>
+    #define clear_terminal() system("cls");
+#endif
 
 /* A seguir definições usadas no trabalho 
  * do professor Ciro Cirne Trindade */
@@ -126,7 +137,7 @@
  * Diretorio onde se
  * encontra a lisença 
  * do software */
-#define LICENSE "./LICENSE/GPL2/Texto/gpl-2.0.txt"
+#define LICENSE "LICENSE"
 
 /* A seguir estruturas usadas no trabalho 
  * do professor Ciro Cirne Trindade */
@@ -716,6 +727,32 @@ int Ddivisao(double n1, double n2);
  * Essa função remove um cliente cadastrado no sistema */
 void remover_cliente(void);
 
+/* Função criada por Gustavo Bacagine.
+ * 
+ * Essa função faz um calculo de um número fatorial
+ * de maneira recursiva */
+int recorsive_fatorial(int n);
+
+/* Função cirada pelo professor Ciro Crine Trindade
+ * 
+ * Outra maneira de limpar o buffer
+ * do terminal. */
+void buffer_clean(void);
+
+/* Essa função foi criada por Herbert Schildt
+ * Pegamos ela de seu livro "C Completo e Total"
+ * 
+ * Essa função funciona semelhante à puts
+ * printando uma string na saída do terminal. */
+void my_puts(char *s);
+
+/* Essa função foi criada por Herbert Schildt
+ * Pegamos ela de seu livro "C Completo e Total"
+ * 
+ * Essa função funciona semelhante à função pow
+ * calculando o expoente (e) de um número (n) */
+int my_pow(int n, int e);
+
 // Desenvolvimento das funções listadas acima
 void clear_buffer(void){
     char c;
@@ -726,28 +763,27 @@ void italico(char *str){
     int i;        // indice da string
     int num = 1; // usado para verificar quando ocorre a primeira ocorrencia dos caracteres '_' e '*'
 
-        i = 0;
-        while(str[i] != '\0'){   // percorre a string
-            if (str[i] == '_'){ // e procura pelo sinal de '_'
-                num++; /* Quando meu caracter for '_' num será igual a dois
-                        * isso serve para que eu possa saber quando o caracter '_'
-                        * aparece pela primeira e segunda vez no terminal */
-
-                if(num %2 == 0){
-                    replace(str, i, "<i>"); // substitui o sinal de '_' pela tag <i>
-                    i+=2;                  // --> não percorre os caracteres 'i' e '>' após a substituição
-                }
-                else if(num %2 != 0){
-                    replace(str, i, "</i>"); // substitui o sinal de '_' pela tag </i>
-                    i+=2;
-                }
+    i = 0;
+    while(str[i] != '\0'){   // percorre a string
+        if (str[i] == '_'){ // e procura pelo sinal de '_'
+            num++; /* Quando meu caracter for '_' num será igual a dois
+                    * isso serve para que eu possa saber quando o caracter '_'
+                    * aparece pela primeira e segunda vez no terminal */
+            if(num %2 == 0){
+                replace(str, i, "<i>"); // substitui o sinal de '_' pela tag <i>
+                i+=2;                  // --> não percorre os caracteres 'i' e '>' após a substituição
             }
-        i++;
+            else if(num %2 != 0){
+                replace(str, i, "</i>"); // substitui o sinal de '_' pela tag </i>
+                i+=2;
+            }
         }
+    i++;
+    }
 }
 
 void negrito(char *str){
-	int i; // indice da string
+    int i; // indice da string
     int num = 1;
 
     i = 0;
@@ -1604,7 +1640,6 @@ int Dmultiplicacao(double n1, double n2){
     return mult;
 }
 
-
 int Ddivisao(double n1, double n2){
     double div;
     
@@ -1612,6 +1647,28 @@ int Ddivisao(double n1, double n2){
     
     return div;
 }
+/*
+int int recorsive_fatorial(int n){
+    
+}
+*/
 
+void buffer_clean(void){
+    while(getchar != '\n');
+}
+
+void my_puts(char* s){
+    while(*s){
+        putchar(*s++);
+    }
+}
+
+int int my_pow(int n, int e){
+    register int t = 1;
+    for(; e; e--){
+        t = t*a;
+    }
+    return t
+}
 
 #endif // _FATEC_H
