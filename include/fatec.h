@@ -15,7 +15,7 @@
  * junto com o fatec.h; case contrario, veja:
  * <http://www.gnu.org/licenses/>.
  * 
- * Versão: 20.06.13
+ * Versão: 20.06.15
  * 
  * Desenvolvedores: Gustavo Bacagine          <gustavo.bacagine@protonmail.com>
  *                  José Eduardo              <joseeduardoolimpio@gmail.com>

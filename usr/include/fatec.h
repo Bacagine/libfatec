@@ -15,7 +15,7 @@
  * junto com o fatec.h; case contrario, veja:
  * <http://www.gnu.org/licenses/>.
  *
- * Versão: 20.06.13
+ * Versão: 20.06.15
  * 
  * Desenvolvedores: Gustavo Bacagine          <gustavo.bacagine@protonmail.com>
  *                  José Eduardo              <joseeduardoolimpio@gmail.com>
@@ -1654,7 +1654,7 @@ int int recorsive_fatorial(int n){
 */
 
 void buffer_clean(void){
-    while(getchar != '\n');
+    while(getchar() != '\n');
 }
 
 void my_puts(char* s){
@@ -1663,12 +1663,12 @@ void my_puts(char* s){
     }
 }
 
-int int my_pow(int n, int e){
+int my_pow(int n, int e){
     register int t = 1;
     for(; e; e--){
-        t = t*a;
+        t = t*n;
     }
-    return t
+    return t;
 }
 
 #endif // _FATEC_H
