@@ -25,7 +25,7 @@
  *                  Profº Ciro Cirne Trindade <ciroct@gmail.com>
  * 
  * Data de início: 02/12/2019
- * Data da última modificação: 24/02/2020 */
+ * Data da última modificação: 08/07/2020 */
 
 // Evita que a biblioteca seja incluida inumeras vezes
 #ifndef _FATEC_H
@@ -40,6 +40,7 @@
 #include <string.h> // Biblioteca usada para manipular strings
 //#include <strings.h>
 #include <ctype.h>
+#include <unistd.h>
 
 // Verifica se o sistema é do tipo unix like
 #ifdef __unix__
@@ -58,10 +59,10 @@
 // Definições por Profº Ciro Cirne Trindade
 
 /* Nome do arquivo aonde os clientes são cadastrados */
-#define ARQ_CLIENTE "clientes.dat"
+//#define ARQ_CLIENTE "clientes.dat"
 
 /* Nome do arquivo aonde as compras são cadastradas */
-#define ARQ_COMPRA "compras.dat"
+//#define ARQ_COMPRA "compras.dat"
 
 // Definições por Gustavo Bacagine
 
@@ -92,20 +93,19 @@
  * compra cadastrada */
 #define NOT_BUY "Erro! Não há nenhuma compra cadastrada!" 
 
-
 /* A seguir definições usadas nas aulas 
  * do professor Ciro Cirne Trindade */
 
 /* Definição criada por Gustavo Bacagine
  * 
  * Nome do arquivo aonde os alunos são cadastrados */
-#define ARQ_ALUNOS "alunos.txt"
+//#define ARQ_ALUNOS "alunos.txt"
 
 /* Definição criada pelo professor
  * Ciro Cirne Trindade
  * 
  * Número de carros à ser cadastrados */
-#define NUM_CARROS 20
+//#define NUM_CARROS 20
 
 /* Definição criada pelo professor
  * Ciro Cirne Trindade
@@ -138,7 +138,7 @@
  * Diretorio onde se
  * encontra a lisença 
  * do software */
-#define LICENSE "./LICENSE/GPL2/Texto/gpl-2.0.txt"
+//#define LICENSE "./LICENSE/GPL2/Texto/gpl-2.0.txt"
 
 /* A seguir estruturas usadas no trabalho 
  * do professor Ciro Cirne Trindade */
@@ -147,32 +147,32 @@
  * Ciro Cirne Trindade.
  * 
  * Ela representa um cliente */
-typedef struct {
+/*typedef struct {
     int codigo_cliente;
     char nome_cliente[51];
     char telefone[15];
-} cliente;
+} cliente; */
 
 /* Estrutura criada pelo professor
  * Ciro Cirne Trindade.
  * 
  * Ela representa uma data */
-typedef struct {
+/*typedef struct {
     int dia;
     int mes;
     int ano;
-} data;
+} data; */
 
 /* Estrutura criada pelo professor
  * Ciro Cirne Trindade.
  * 
  * Ela representa uma compra */
-typedef struct {
+/*typedef struct {
     int numero_compra;
     int codigo_cliente; // código do cliente que realizou a compra
     float valor;
     data dt_compra;
-} compra;
+} compra; */
 
 /* A seguir estruturas usadas nas aulas 
  * do professor Ciro Cirne Trindade */
@@ -188,7 +188,7 @@ typedef struct {
  * entre dois pontos, (x 1 , y 1 ) e (x 2 , y 2 ):
  * 
  * d = √ ( x 1 − x 2 )^2 +( y 1 − y 2 )^2 */
-struct ponto {
+/*struct ponto {
 	int x;
 	int y;
 };
@@ -196,51 +196,51 @@ struct ponto {
 struct circulo {
 	struct ponto centro;
 	int raio;
-};
+};*/
 
 /* Estrutura criada pelo professor
  * Ciro Cirne Trindade 
  * 
  * Ela representa um processador: frequência e fabricante. */
-typedef struct {
+/*typedef struct {
 	float frequencia;
 	char fabricante[21];
-} processador;
+} processador;*/
  
 /* Estrutura criada pelo professor
  * Ciro Cirne Trindade 
  * 
  * Ela representam um monitor: tamanho, tipo (LCD, CRT, Plasma, Led)
  * e fabricante. */
-typedef enum { LCD, CRT, PLASMA, LED } tipo_monitor;
+/*typedef enum { LCD, CRT, PLASMA, LED } tipo_monitor;
 typedef struct {
 	int tamanho;
 	tipo_monitor tipo;
 	char fabricante[21];
-} monitor;  
+} monitor;  */
  
 /* Estrutura criada pelo professor
  * Ciro Cirne Trindade 
  * 
  * Ela serve para representar um computador: processador, monitor, capacidade de
  * disco rígido e memória RAM. */
-typedef struct {
+/*typedef struct {
 	processador proc;
 	monitor tela;
 	int capacidade_hd;
 	int ram;
-} computador;
+} computador;*/
 
 /* Estrutura criada pelo professor
  * Ciro Cirne Trindade 
  * 
  * Ela serve para o cadastro 
  * de funcionarios */
-struct funcionario {
+/*struct funcionario {
 	char nome[41];
 	int departamento;
 	float salario;
-};
+};*/
 
 /* Considere as declarações a seguir para representar o cadastro de alunos de uma
  * disciplina e implemente uma função que imprima o número de matrícula, o nome, a
@@ -257,12 +257,12 @@ struct funcionario {
  * maior ou igual a 6.
  * A função deve receber como parâmetros o número de alunos da disciplina e um vetor com os
  * dados dos alunos. */
-typedef struct {
+/*typedef struct {
 	char nome[40];
 	int matricula;
 	char turma;
 	float provas[3];
-} aluno;
+} aluno; */
 
 /* Seja uma estrutura para descrever os carros de uma determinada revendedora, contendo os
  * seguintes campos:
@@ -276,13 +276,13 @@ typedef struct {
  * c) Cadastrar um carro no vetor vetcarros .
  * d) Listar todos os carros com preço menor ou igual a um valor fornecido pelo usuário;
  * e) Listar todos os carros de uma determinada marca fornecida pelo usuário; */
-
+/*
 struct carro {
 	char marca[21];
 	int ano;
 	char cor[11];
 	float preco;
-};
+};*/
 
 /* A seguir as funções mais usadas pelos alunos 
  * de ADSM da FATEC de Carapicuíba */
@@ -405,7 +405,7 @@ void listar_compras_data(void);
  * Usada na função listar_compras_data()
  * 
  * OBS: em andamento */
-bool datas_iguais(data, data);
+//bool datas_iguais(data, data);
 
 /* Prototipo criado pelo Profº Ciro Cirne Trindade
  * E desenvolvida pelos alunos da FATEC de Carapicuíba
@@ -614,37 +614,37 @@ void converte(float, double *, double *, double *);
  * 
  * Essa função serve para verificar se
  * um aluno foi aprovado ou reprovado */
-void aprovados(int, aluno []);
+//void aprovados(int, aluno []);
 
 /* Função criada pelo Profº Ciro Cirne Trindade
  *
  * Essa função serve para o cadastro de carros */
-void cadastrar_carro(int *, struct carro []);
+//void cadastrar_carro(int *, struct carro []);
 
 /* Função criada pelo Profº Ciro Cirne Trindade
  *
  * Essa função serve para listar os carros
  * cadastrados */
-void listar_por_preco(int, struct carro[], float);
+//void listar_por_preco(int, struct carro[], float);
 
 /* Função criada pelo Profº Ciro Cirne Trindade
  *
  * Essa função serve para listar os carros
  * cadastrados por marca */
-void listar_por_marca(int, struct carro[], const char *);
+//void listar_por_marca(int, struct carro[], const char *);
 
 // Aula 8 Arquivos
 
 /* Função criada pelo Profº Ciro Cirne Trindade
  *
  * Essa função serve para o cadastro de alunos */
-void cadastrar_aluno(void);
+//void cadastrar_aluno(void);
  
 /* Função criada pelo Profº Ciro Cirne Trindade
  *
  * Essa função serve para listar os alunos
  * cadastrados */
-void listar_alunos(void);
+//void listar_alunos(void);
 
 /* Função criada pelo Profº Ciro Cirne Trindade
  *
@@ -665,68 +665,68 @@ char *replaceWord(const char *str, const char *oldW, const char *newW);
 /* Função criada por Gustavo Bacagine.
  *
  * Essa função soma dois numeros inteiros */
-int Soma(int n1, int n2);
+int soma(int n1, int n2);
 
 /* Função criada por Gustavo Bacagine.
  *
  * Essa função subtração dois numeros inteiros */
-int Subtracao(int n1, int n2);
+int subtracao(int n1, int n2);
 
 /* Função criada por Gustavo Bacagine.
  *
  * Essa função multiplicação dois numeros inteiros */
-int Multiplicacao(int n1, int n2);
+int multiplicacao(int n1, int n2);
 
 /* Função criada por Gustavo Bacagine.
  *
  * Essa função divide dois numeros inteiros */
-int Divisao(int n1, int n2);
+int divisao(int n1, int n2);
 
 /* Função criada por Gustavo Bacagine.
  *
  * Essa função soma dois numeros do tipo ponto flutuante */
-int Fsoma(float n1, float n2);
+int fsoma(float n1, float n2);
 
 /* Função criada por Gustavo Bacagine.
  *
  * Essa função subtração dois numeros numeros do tipo ponto flutuante */
-int Fsubtracao(float n1, float n2);
+int fsubtracao(float n1, float n2);
 
 /* Função criada por Gustavo Bacagine.
  *
  * Essa função multiplicação dois numeros numeros do tipo ponto flutuante */
-int Fmultiplicacao(float n1, float n2);
+int fmultiplicacao(float n1, float n2);
 
 /* Função criada por Gustavo Bacagine.
  *
  * Essa função divide dois numeros numeros do tipo ponto flutuante */
-int Fdivisao(float n1, float n2);
+int fdivisao(float n1, float n2);
 
 /* Função criada por Gustavo Bacagine.
  *
  * Essa função soma dois numeros do tipo double */
-int Dsoma(double n1, double n2);
+int dsoma(double n1, double n2);
 
 /* Função criada por Gustavo Bacagine.
  *
  * Essa função subtração dois numeros numeros do tipo double */
-int Dsubtracao(double n1, double n2);
+int dsubtracao(double n1, double n2);
 
 /* Função criada por Gustavo Bacagine.
  *
  * Essa função multiplicação dois numeros numeros do tipo double */
-int Dmultiplicacao(double n1, double n2);
+int dmultiplicacao(double n1, double n2);
 
 /* Função criada por Gustavo Bacagine.
  *
  * Essa função divide dois numeros numeros do tipo double */
-int Ddivisao(double n1, double n2);
+int ddivisao(double n1, double n2);
 
 
 /* Função criada por Gustavo Bacagine.
  *
  * Essa função remove um cliente cadastrado no sistema */
-void remover_cliente(void);
+//void remover_cliente(void);
 
 /* Função criada por Gustavo Bacagine.
  * 
