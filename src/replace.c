@@ -27,7 +27,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "fatec.h"
+#include "../include/fatec/fatec.h"
 
 void replace(char *str, int i, const char *newStr){
     char oldStr[101];

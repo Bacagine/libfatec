@@ -25,12 +25,10 @@
  **********************************************************************************/
 
 #include <stdio.h>
-#include "fatec.h"
+#include "../include/fatec/fatec.h"
 
 int main(void){
     menu();
-
 	return 0;
 }
 
-// Isto é um teste para o GitHub Desktop
