@@ -22,7 +22,7 @@
  *                  Profº Ciro Cirne Trindade <ciroct@gmail.com>                  *
  *                                                                                *
  * Data: 02/12/2019                                                               *
- * Data da última modificação: 21/07/2020                                         *
+ * Data da última modificação: 10/08/2020                                         *
  **********************************************************************************/
 
 #include <stdio.h>
@@ -38,8 +38,8 @@ void buffer_clean(void){
 }
 
 void print(char *s){
-    while(*s++){
-        putchar(*s);
+    while(*s){
+        putchar(*s++);
     }
     putchar('\n');
 }
@@ -162,10 +162,10 @@ char *rstr(char *str, char *var){
     return str;
 }
 */
-void developers(int qtd, const char ** names,
-                const char ** emails, int year,
-                const char* university, const char* city,
-                const char* desc){
+void developers(int qtd, const char names[][MAX_NAME_LEN],
+                const char emails[][MAX_NAME_LEN], int year,
+                const char *university, const char *city,
+                const char *desc){
     setlocale(LC_ALL, "");
 
     clear_terminal();
@@ -179,7 +179,7 @@ void developers(int qtd, const char ** names,
     fprintf(stdout, "* %s  -                %s            -         %d *\n", university, city, year);
     fprintf(stdout, "*---------------------------------------------------------------*\n");
     fprintf(stdout, "*                                                               *\n");
-	for(int count = 0, count < qtd; count++){
+	for(int count = 0; count < qtd; count++){
     	fprintf(stdout, "* %s          <%s>   *\n", names[count], emails[count]);
 	}
     fprintf(stdout, "*                                                               *\n");
@@ -193,4 +193,3 @@ void developers(int qtd, const char ** names,
     
     stay(); /* Simula o system("pause") do windows */
 }
-

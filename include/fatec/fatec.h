@@ -25,9 +25,8 @@
  *                  Profº Ciro Cirne Trindade <ciroct@gmail.com>
  * 
  * Data de início: 02/12/2019
- * Data da última modificação: 08/07/2020 */
+ * Data da última modificação: 10/08/2020 */
 
-// Evita que a biblioteca seja incluida inumeras vezes
 #ifndef _FATEC_H
 #define _FATEC_H
 
@@ -35,7 +34,7 @@
 #include <locale.h>    /* Biblioteca para poder usar a função setlocale 
                         * usada para colocar acentuação nas palavras */
 #include <string.h>
-#include <math.h>    // Biblioteca para usar funções matematicas
+#include <math.h>
 #include <limits.h>
 #include <unistd.h>
 #include <sys/types.h>
@@ -43,25 +42,29 @@
 
 // Verifica se o sistema é do tipo unix like
 #ifdef __unix__
-	#define UNIX
+    #define UNIX
     #include <stdlib.h> // Biblioteca usada para ultilizar comandos do Sistema Operacional
     #define clear_terminal() system("clear");
-	#define stay() printf("\nPress enter to continue..."); getchar();
+    #define stay() printf("\nPress enter to continue..."); getchar();
 // Verificar se o sistema é Windows ou se o programa foi compilado para Windows
 #elif defined(_WIN32) || defined(WIN32) || defined(__MINGW32__) || defined(_MCS_VER)
-	#define WIN
+    #define WIN
     #include <stdlib.h>
     #define clear_terminal() system("cls");
 #endif // __unix__
 
 // Definições por Gustavo Bacagine
 
-#define __FATEC_VERSION__ "20.07.01"
+#define __FATEC_VERSION__ "20.08.12"
 
 /* Mensagem de erro caso 
  * o usuario digite uma 
  * opção inválida */
 #define ERROR "ERROR: Invalid option!"
+
+/* Tamanho maximo para
+ * um nome */
+#define MAX_NAME_LEN 51
 
 /* A seguir as funções mais usadas pelos alunos 
  * de ADSM da FATEC de Carapicuíba */
@@ -109,7 +112,7 @@ void buffer_clean(void);
  * Foi feita como um exemplo apenas pois,
  * o menu normalmente fica na função main.
  * Você pode usa-lá para criar seus propios menus*/
-void menu(void);
+//void menu(void);
 
 /* Função criada pelo Profº Ciro Cirne Trindade.
  *
@@ -200,8 +203,8 @@ void swap(int *x, int *y);
  * Ela é usada para mostrar
  * os desenvolvedores da 
  * aplicação */
-void developers(int qtd, const char **names, 
-                const char **emails, int year, 
+void developers(int qtd, const char names[][MAX_NAME_LEN], 
+                const char emails[][MAX_NAME_LEN], int year, 
                 const char *university, const char *city, 
                 const char *desc);
 

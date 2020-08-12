@@ -12,50 +12,50 @@
 #
 # Git Hub: https://github.com/Bacagine/fatec
 
-TARGET = fatec
+TARGET = libfatec.so
 SRCDIR = ./src
-INCDIR = ./include
+INCDIR = ./include/fatec
 OBJDIR = ./obj
-BINDIR = ./bin
+LIBDIR = ./lib
 SRC    = $(wildcard $(SRCDIR)/*.c)
 INC    = -I $(INCDIR)
-OBJ    = $(addprefix $(OBJDIR)/, main.o menu.o aulas.o Trab02.o basic_math.o clear_buffer.o developers.o)
-BIN    = $(BINDIR)/$(TARGET)
+OBJ    = $(addprefix $(OBJDIR)/, fatec.o str.o date.o my_math.o physics.o)
+LIB    = $(LIBDIR)/$(TARGET)
 RM     = rm -rf
 CC     = gcc
 CFLAGS = -lm
 
-all: $(OBJDIR) $(BINDIR) $(BIN)
+# gcc -fPIC -c fatec.c
+# gcc -shared -o libfatec.so fatec.o
+# Usando a flag sem instalar
+# gcc -o ola ola.o -L -lfatec
+
+all: $(OBJDIR) $(LIBDIR) $(LIB)
 
 $(OBJDIR):
-	mkdir $(OBJDIR)
-$(BINDIR):
-	mkdir $(BINDIR)
-$(BIN): $(OBJ)
-	$(CC) -o $(BIN) $(OBJ) $(CFLAGS)
-$(OBJDIR)/main.o: $(SRCDIR)/main.c $(INCDIR)/fatec.h
-	$(CC) -c $< $(INC) -o $@ $(CFLAGS)
-$(OBJDIR)/menu.o: $(SRCDIR)/menu.c $(INCDIR)/fatec.h
-	$(CC) -c $< $(INC) -o $@ $(CFLAGS)
-$(OBJDIR)/aulas.o: $(SRCDIR)/aulas.c $(INCDIR)/fatec.h
-	$(CC) -c $< $(INC) -o $@ $(CFLAGS)
-$(OBJDIR)/Trab02.o: $(SRCDIR)/Trab02.c $(INCDIR)/fatec.h
-	$(CC) -c $< $(INC) -o $@ $(CFLAGS)
-$(OBJDIR)/basic_math.o: $(SRCDIR)/basic_math.c $(INCDIR)/fatec.h
-	$(CC) -c $< $(INC) -o $@ $(CFLAGS)
-$(OBJDIR)/clear_buffer.o: $(SRCDIR)/clear_buffer.c $(INCDIR)/fatec.h
-	$(CC) -c $< $(INC) -o $@ $(CFLAGS)
-$(OBJDIR)/developers.o: $(SRCDIR)/developers.c $(INCDIR)/fatec.h
-	$(CC) -c $< $(INC) -o $@ $(CFLAGS)
-run:
-	$(BIN)
+	mkdir $@
+$(LIBDIR):
+	mkdir $@
+$(LIB): $(OBJ)
+	$(CC) -shared -o $@ $< $(CFLAGS)
+$(OBJDIR)/fatec.o: $(SRCDIR)/fatec.c $(INCDIR)/fatec.h
+	$(CC) -fPIC -c $< $(INC) -o $@ $(CFLAGS)
+$(OBJDIR)/str.o: $(SRCDIR)/str.c $(INCDIR)/str.h
+	$(CC) -fPIC -c $< $(INC) -o $@ $(CFLAGS)
+$(OBJDIR)/date.o: $(SRCDIR)/date.c $(INCDIR)/date.h
+	$(CC) -fPIC -c $< $(INC) -o $@ $(CFLAGS)
+$(OBJDIR)/my_math.o: $(SRCDIR)/my_math.c $(INCDIR)/my_math.h
+	$(CC) -fPIC -c $< $(INC) -o $@ $(CFLAGS)
+$(OBJDIR)/physics.o: $(SRCDIR)/physics.c $(INCDIR)/physics.h
+	$(CC) -fPIC -c $< $(INC) -o $@ $(CFLAGS)
 install:
-	cp usr/include/fatec.h /usr/include/
+	cp -r ./fatec/ /usr/include/
+	cp $(LIB) /usr/lib/
 uninstall:
-	$(RM) /usr/include/fatec.h
+	$(RM) /usr/include/fatec
 clean:
 	$(RM) $(OBJ)
 mrproper: clean
 	$(RM) $(OBJDIR)
-	$(RM) $(BINDIR)
-.PHONY: all run clean mrproper install uninstall
+	$(RM) $(LIBDIR)
+.PHONY: all clean mrproper install uninstall

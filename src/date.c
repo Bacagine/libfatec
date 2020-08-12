@@ -22,7 +22,7 @@
  * Data da última modificação: 21/07/2020
  */
 
-#include "../include/fatec/data.h"
+#include "../include/fatec/date.h"
 
 int compara_datas(date dt1, date dt2){
     int d1, d2;
