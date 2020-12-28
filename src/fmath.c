@@ -126,11 +126,11 @@ void bhaskara(double *x1, double *x2, double a, double b, double c){
 double hipotenusa(const double cat1, const double cat2){
     return sqrt((double) my_pow(cat1, 2) + (double) my_pow(cat2, 2));
 }
-
+/*
 int mdc(int n1, int n2){
     return ;
 }
-
+*/
 double imc(const double height, const char sexo){
     if(!strcmp(&sexo, "M") || !strcmp(&sexo, "m")){
         return 72.7 * height - 58;

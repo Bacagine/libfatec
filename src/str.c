@@ -27,7 +27,7 @@ void replace(char *str, int i, const char *newStr){
     strcpy(str, &aux);
 }
 */
-int palindrome(const char *str){
+int palindrome(const string str){
     char rts[MAX_STR_LEN];
     int count;
     for(count = strlen(str); count >= 0; count--){
@@ -42,7 +42,7 @@ int palindrome(const char *str){
     }
 }
 
-int count_str(const char *str){
+int count_str(const string str){
     int count;
     for(count = 0; str[count] != '\0'; count++);
     return count;
