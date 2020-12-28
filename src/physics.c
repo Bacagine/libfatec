@@ -1,91 +1,45 @@
-#include <stdio.h>
 #include "../include/fatec/physics.h"
 
 double vm(double space, double time){
-    double vel;
-    
-    vel = space / time;
-    
-    return vel;
+    return space / time;
 }
 
 double fr(double mass, double aceleration){
-    double force;
-    
-    force = mass * aceleration;
-    
-    return force;
+    return mass * aceleration;
 }
 
 double weight(double mass, double gravity){
-    double p;
-    
-    p = mass * gravity;
-    
-    return p;
+    return mass * gravity;
 }
 
 double ec(double mass, double vm){
-    double energy;
-    
-    energy = (mass * pow(vm, 2)) / 2;
-    
-    return energy;
+    return (mass * my_pow(vm, 2)) / 2;
 }
 
 double epg(double mass, double gravity, double heigth){
-    double energy;
-    
-    energy = mass * gravity * heigth;
-    
-    return energy;
+    return mass * gravity * heigth;
 }
 
 double epe(double k, double x){
-    double energy;
-    
-    energy = (k * pow(x, 2)) / 2;
-    
-    return energy;
+    return (k * my_pow(x, 2)) / 2;
 }
 
-
 double em(double ec, double ep){
-    double energy;
-    
-    energy = ec + ep;
-    
-    return energy;
+    return ec + ep;
 }
 
 double im(double force, double time){
-    double i;
-    
-    i = force * time;
-    
-    return i;
+    return force * time;
 }
 
 double qm(double mass, double velocity){
-    double q;
-    
-    q = mass * velocity;
-    
-    return q;
+    return mass * velocity;
 }
 
 double pressure(double force, double area){
-    double p;
-    
-    p = force / area;
-    
-    return p;
+    return force / area;
 }
 
 double density(double mass, double volume){
-    double d;
-    
-    d = mass / volume;
-    
-    return d;
+    return mass / volume;
 }

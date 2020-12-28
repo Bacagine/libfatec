@@ -2,74 +2,93 @@
  * 
  * Copyright (C) 2019 - 2020
  * 
- * fatec.h: Biblioteca criada pelos alunos de ADSM
- * contendo o prototipo das funções e estruturas que
- * foram usadas no primeiro ano do curso
+ * fatec.h: Library was created by ADSM students
+ * having the prototype of functions and structures that
+ * was used during the course.
  * 
- * fatec.h é um software livre; você pode redistribui-lo e/ou
- * modificalo sob os termos da Licença GNU Lesser General Public
- * publicada pela Free Software Foundation; ou
- * versão 2 da licença ou (a seu critério) qualquer versão posterior.
+ * this is a free software; you can redistribute and/or
+ * change under the Licence GNU Lesser General Public terms
+ * published by Free Software Foundation; or
+ * version 2 of the licence or (by your criteria) any previous version.
  * 
- * Você deve ter recebido uma copia da Licença GNU Lesser General Public
- * junto com o fatec.h; case contrario, veja:
+ * You must have received a copy of the Licence GNU Lesser General Public
+ * with the software; otherwise, see:
  * <http://www.gnu.org/licenses/>.
  * 
- * Versão: 20.06.15
+ * Developers: Gustavo Bacagine          <gustavo.bacagine@protonmail.com>
+ *             José Eduardo              <joseeduardoolimpios@gmail.com>
+ *             Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com>
+ *             Caio Elias Emerick Regino <caioregino.147@gmail.com>
+ *             Luiz Dionizio             <luizgdsoares@hotmail.com>
+ *             Profº Ciro Cirne Trindade <ciroct@gmail.com>
  * 
- * Desenvolvedores: Gustavo Bacagine          <gustavo.bacagine@protonmail.com>
- *                  José Eduardo              <joseeduardoolimpio@gmail.com>
- *                  Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com>
- *                  Caio Elias Emerick Regino <caioregino.147@gmail.com>
- *                  Luiz Dionizio             <luizgdsoares@hotmail.com>
- *                  Profº Ciro Cirne Trindade <ciroct@gmail.com>
- * 
- * Data de início: 02/12/2019
- * Data da última modificação: 10/08/2020 */
+ * Begin's date: 12/02/2019
+ * Date of the last modification: 09/01/2020 */
 
 #ifndef _FATEC_H
 #define _FATEC_H
 
-#include <stdio.h>
-#include <locale.h>    /* Biblioteca para poder usar a função setlocale 
-                        * usada para colocar acentuação nas palavras */
-#include <string.h>
-#include <math.h>
-#include <limits.h>
+#ifndef _STDIO_H
+    #include <stdio.h>
+#endif // _STDIO_H
+
+#ifndef _LOCALE_H
+    #include <locale.h>
+#endif // _LOCALE_H
+
+#ifndef _STRING_H
+    #include <string.h>
+#endif // _STRING_H
+
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 
-// Verifica se o sistema é do tipo unix like
+// Verify if the system is the unix like
 #ifdef __unix__
     #define UNIX
-    #include <stdlib.h> // Biblioteca usada para ultilizar comandos do Sistema Operacional
-    #define clear_terminal() system("clear");
+//    #include <stdlib.h>
+    #define clear_terminal() printf("\033\143");
     #define stay() printf("\nPress enter to continue..."); getchar();
-// Verificar se o sistema é Windows ou se o programa foi compilado para Windows
+// Verify if the system is a Windows or if the program was compiled for Windows
 #elif defined(_WIN32) || defined(WIN32) || defined(__MINGW32__) || defined(_MCS_VER)
     #define WIN
     #include <stdlib.h>
     #define clear_terminal() system("cls");
+    #define stay("pause");
 #endif // __unix__
 
-// Definições por Gustavo Bacagine
+// Definitions by Gustavo Bacagine
 
-#define __FATEC_VERSION__ "20.08.12"
+/* Version of libfatec */
+#define __FATEC_VERSION__ "20.08.17"
 
-/* Mensagem de erro caso 
- * o usuario digite uma 
- * opção inválida */
-#define ERROR "ERROR: Invalid option!"
+/* Description of the library */
+#define FATEC_DESCRIPTION "libfatec is a library created by ADSM students having\n\
+the prototypo of the functions and structures that was used during the course.\n"
 
-/* Tamanho maximo para
- * um nome */
+/* Error message in case 
+ * user type an 
+ * invalid option */
+#define MENU_ERROR "ERROR: Invalid option!"
+
+/* Max length for
+ * a name */
 #define MAX_NAME_LEN 51
 
-/* A seguir as funções mais usadas pelos alunos 
- * de ADSM da FATEC de Carapicuíba */
+/* Max length that
+ * the name characters
+ * of a file can have */
+#define MAX_FILE_LEN 257
 
-/* Função usada para evitar 
+/* Max length for
+ * a line */
+#define MAX_LINE_LEN 100000
+
+/* Following the most used functions by ADSM
+ * students of Carapicuíba's FATEC */
+
+/* Function used to avoid 
  * Buffer Overflow
  * 
  * Você pode se perguntar o motivo
@@ -99,14 +118,13 @@
  * passamos a usa-lá em nossos programas */
 void clear_buffer(void);
 
-/* Função cirada pelo professor Ciro Cirne Trindade
+/* Function created by professor Ciro Cirne Trindade
  * 
- * Outra maneira de limpar o buffer
- * do terminal. */
+ * Other way to clean the terminal
+ * buffer. */
 void buffer_clean(void);
 
-/* Função criada por 
- * Gustavo Bacagine
+/* Function created by Gustavo Bacagine
  * 
  * Ela printa um menu no terminal
  * Foi feita como um exemplo apenas pois,
@@ -121,91 +139,124 @@ void buffer_clean(void);
  * informe o valor desse número na base decimal. */
 //void binario_decimal(void);
 
-
-/* Essa função foi criada por Herbert Schildt
- * Pegamos ela de seu livro "C Completo e Total"
- * e fizemos uma adaptação para que ela pule uma
- * linha no final da string.
+/* This function was created by Herbert Schildt
+ * We took it in his book "C Completo e Total"
+ * and we did an adaptation that make the function jumps one
+ * line at the end of the string.
  * 
- * Essa função funciona semelhante à puts
- * printando uma string na saída do terminal. */
-void print(char *s);
+ * This function works similar to 'puts()'
+ * printing a string in the terminal exit. */
+void print(const char *str);
 
-/* Função criada por Gustavo Bacagine
+/* Function created by Gustavo Bacagine
  * 
- * Ela exibe o conteudo de um
- * arquivo */
+ * This function works similiar to 'fputs()'
+ * printing a string in a file or in
+ * a exit of your choice */
+void fprint(FILE *__stream, const char *str);
+
+/* Function created by Gustavo Bacagine
+ * 
+ * It shows the content of one
+ * file in the beginning until the end */
 int cat(const char *file);
 
-/* Função Criada por Gustavo Bacagine
+/* Function created by Gustavo Bacagine
  * 
- * Ela exibe as 10 primeiras linhas
- * de um arquivo */
+ * It shows the content of one
+ * file in the end until the beginning */
+//int tac(const char *file);
+
+/* Function created by Gustavo Bacagine
+ * 
+ * It shows the 10 first lines
+ * of a file */
 int head(const char *file);
 
-/* Função criada por Gustavo Bacagine
+/* Function created by Gustavo Bacagine
  * 
- * Ela copia o conteudo de um arquivo
- * para outro */
+ * It shows the 10 last lines
+ * of a file */
+//int tail(const char *file);
+
+/* Function created by Gustavo Bacagine
+ * 
+ * It copies the content of a file
+ * to the other */
 int cp(const char *ori, const char *dest);
 
-/* Função criada por Gustavo Bacagine
+/* Function created by Gustavo Bacagine
  * 
- * Ela limpa o terminal (semelhante ao comando
- * clear do linux) */
+ * It clears the terminal (similar to the linux
+ * clear command) */
 void clear(void);
 
-/* Função criada por Gustavo Bacagine
+/* Function created by Gustavo Bacagine
  * 
- * Ela cria um diretorio com a permissão escolhida
- * pelo desenvolvedor.
- * Recebe como 1º argumento o nome do diretorio e
- * como 2º argumento o número da permissão */
-void mkfolder(const char *folder, int permission);
+ * It creat a directory with permissions escolhida
+ * pelo developer.
+ * Received como 1º argument a string vector with the name of directories,
+ * como 2º argument the number of umask and como 3º the quantidade */
+void mkfolders(const char folder[][MAX_FILE_LEN], const int umask, const int qtd);
 
-/* Função criada por Gustavo Bacagine
+/* Function created by Gustavo Bacagine
  * 
- * Ela busca uma palavra em um arquivo
- * Recebe como 1º argumento a palavra a ser
- * procurada e como 2º o arquivo onde será
+ * It search a word in a file
+ * Received como 1º argument the word a ser
+ * procurada and como 2º the file onde será
  * procurada. */
 int grep(const char *word, const char *file);
 
-/* Função criada por Gustavo Bacagine
+/* Function created by Gustavo Bacagine
  * 
  * Ela move um arquivo para outro lugar, ela
  * pode ser usada também para renomear arquivos.
  * Recebe como 1º argumento o nome do arquivo
  * e como 2º o destino para onde ele deve ser 
  * movido. */
-void mv(const char *ori, const char *dest);
+int mv(const char *ori, const char *dest);
 
-/* Função criada por Gustavo Bacagine
+/* Function created by Gustavo Bacagine
  * 
- * Remove um ou mais arquivos e diretorios
+ * Remove varios arquivos e diretorios
  * vazios */
-void rm(const char *arqs);
+void rm(const char arqs[][MAX_FILE_LEN], const int qtd);
 
-/* Função criada por Gustavo Bacagine
+/* Function created by Gustavo Bacagine
+ * 
+ * Recebe uma string como parametro
+ * e cria um arquivo com o nome da
+ * string passada */
+int touch(const char *str);
+
+/* Function created by Gustavo Bacagine
  * 
  * Ela inverte os valores de x e y */
 void swap(int *x, int *y);
 
-/* Função criada por Gustavo Bacagine
+/* Função criada pela professora Andreia Machion
+ * e modificada por Gustavo Bacagine
+ * 
+ * Uma forma alternativa para ler uma string
+ * digitada pelo usuario */
+void rstr(char *str, int length);
+
+/* Function created by Gustavo Bacagine
  * 
  * Armazena o valor de uma string em
- * uma variaves */
-//char *rstr(char *str, char *var);
+ * uma variavel apartir de um arquivo
+ * ou da entrada especificada */
+void frstr(char *str, int length, FILE *__stream);
 
-/* Função criada por 
+/* Function created by 
  * Gustavo Bacagine
  * 
  * Ela é usada para mostrar
  * os desenvolvedores da 
  * aplicação */
-void developers(int qtd, const char names[][MAX_NAME_LEN], 
+/*void developers(const int qtd, const char names[][MAX_NAME_LEN], 
                 const char emails[][MAX_NAME_LEN], int year, 
                 const char *university, const char *city, 
-                const char *desc);
+                const char *desc);*/
 
 #endif // _FATEC_H

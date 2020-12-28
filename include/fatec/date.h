@@ -15,63 +15,102 @@
  * junto com o fatec.h; case contrario, veja:
  * <http://www.gnu.org/licenses/>.
  * 
- * Versão: 21.07.20
- * 
  * Desenvolvedores: Gustavo Bacagine          <gustavo.bacagine@protonmail.com>
  *                  Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com>
  * 
  * Data de ínicio: 20/07/2020
- * Data da última modificação: 21/07/2020
+ * Data da última modificação: 17/08/2020
  */
 
-#ifndef _DATA_H
-#define _DATA_H
+#ifndef _FDATE_H
+#define _FDATE_H
 
-/* Biblioteca usada
- * para manipulação
- * de variaveis booleanas */
+#include <time.h>
 #include <stdbool.h>
 
-/* Estrutura criada por Gustavo Bacagine
+/* Structure created by Gustavo Bacagine
  * 
- * Ela representa uma data */
+ * It represents a date */
 typedef struct{
-    int dia;
-    int mes;
-    int ano;
+    int day;
+    int month;
+    int year;
 } date;
 
-/* Função criada por Gustavo Bacagine e
+/* Function created by Gustavo Bacagine and
  * Lucas Pereira de Matos
  * 
- * Essa função que devolve um valor negativo
- * se a primeira data for menor que a segunda,
- * 0 se as duas datas são iguais, ou um valor
- * positivo se a primeira data for maior que 
- * a segunda */
-int compara_datas(date , date );
+ * This function returns a negative value
+ * if the first date for menor que a second,
+ * 0 if as duas dates são iguais, or a positive
+ * value if the first date for maior que 
+ * the second */
+int compara_datas(date dt1, date dt2);
 
-/* Função criada por Gustavo Bacagine
+/* Function created by Gustavo Bacagine
  * 
  * Essa função compara se as duas datas
  * passadas pelo usuário são iguais ou
  * não. */
-bool datas_iguais(date , date );
+bool datas_iguais(date dt1, date dt2);
 
-/*  */
-int valida_mes(int mes);
+/* Function created by Gustavo Bacagine
+ * 
+ * This function verify if year is a 
+ * leap year or not. Return 0 in positive
+ * case or 1 in negative case */
+int leap_year(int year);
+
+/* Function created bu Gustavo Bacagine
+ * 
+ * This function verify
+ * if a day is valid or
+ * not */
+int valida_dia(date dt);
 
 /* Função criada por Gustavo Bacagine
+ * 
+ * Essa função verifica se um valor
+ * dado para um mês é valido e,
+ * retorna 0 em caso positivo ou
+ * 1 em caso negativo */
+int valida_mes(int month);
+
+/* Function created by Gustavo Bacagine
+ * 
+ * This function verify if year is valid.
+ * Return 0 in positive case or 1 in
+ * negative case */
+int valida_ano(int year);
+
+/* Função criada por Gustavo Bacagine
+ * 
+ * Recebe uma data e verifica se ela é
+ * valida. Retorna 0 caso seja valida ou
+ * 1 caso seja inválida */
+int valida_data(date dt);
+
+/* Function created by Gustavo Bacagine
  * 
  * Essa função faz uma listagem entre
  * o periodo das duas datas passadas
  * como argumentos. */
-void listar_por_data(date , date);
+//void listar_por_data(date , date);
 
-/* Função criada pelo Profº Ciro Cirne Trindade.
+/* Function created by professor Ciro Cirne Trindade.
  *
  * Essa função recebe uma data no formato ddmmaaaa, 
  * e devolve o dia, o mês e o ano separadamente. */
 void separa_data(int, int *, int *, int *);
 
-#endif // _DATA_H
+/* Function created by Gustavo Bacagine
+ * 
+ * This function get a date of system */
+void get_date(int *day, int *month, int *year);
+
+/* Function created by Gustavo Bacagine
+ * 
+ * This function get a time of system */
+void get_time(int *hour, int *minute, int *second);
+
+#endif // _FDATE_H

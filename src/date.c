@@ -2,7 +2,7 @@
  * 
  * Copyright (C) 2019 - 2020
  * 
- * data.c: 
+ * date.c: 
  * 
  * fatec.h é um software livre; você pode redistribui-lo e/ou
  * modificalo sob os termos da Licença GNU Lesser General Public
@@ -13,13 +13,11 @@
  * junto com o fatec.h; case contrario, veja:
  * <http://www.gnu.org/licenses/>.
  * 
- * Versão: 21.07.20
+ * Developers: Gustavo Bacagine          <gustavo.bacagine@protonmail.com>
+ *             Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com>
  * 
- * Desenvolvedores: Gustavo Bacagine          <gustavo.bacagine@protonmail.com>
- *                  Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com>
- * 
- * Data de ínicio: 20/07/2020
- * Data da última modificação: 21/07/2020
+ * Begin's date: 20/07/2020
+ * Date of last modification: 17/08/2020
  */
 
 #include "../include/fatec/date.h"
@@ -27,8 +25,8 @@
 int compara_datas(date dt1, date dt2){
     int d1, d2;
     
-    d1 = dt1.ano * 10000 + dt1.mes * 100 + dt1.dia;
-    d2 = dt2.ano * 10000 + dt2.mes * 100 + dt2.dia;
+    d1 = dt1.year * 10000 + dt1.month * 100 + dt1.day;
+    d2 = dt2.year * 10000 + dt2.month * 100 + dt2.day;
     
     /* Verifica se as datas 
      * são iguais */
@@ -60,8 +58,8 @@ int compara_datas(date dt1, date dt2){
 bool datas_iguais(date dt1, date dt2){
     int d1, d2;
     
-    d1 = dt1.ano * 10000 + dt1.mes * 100 + dt1.dia;
-    d2 = dt2.ano * 10000 + dt2.mes * 100 + dt2.dia;
+    d1 = dt1.year * 10000 + dt1.month * 100 + dt1.day;
+    d2 = dt2.year * 10000 + dt2.month * 100 + dt2.day;
     
     /* Se as datas forem iguais a
      * função retorna verdadeiro */
@@ -75,18 +73,104 @@ bool datas_iguais(date dt1, date dt2){
     }
 }
 
-int valida_mes(int mes){
-    
+int leap_year(int year){
+    /* A is a leap year quando é divisivel to
+     * 4 or to 400 but not to 100 */
+    bool leap = (year % 4 == 0 || year % 400 == 0)
+                 && year % 100 != 0;
+    if(leap == true){
+        return 0;
+    }
+    return 1;
 }
 
+int valida_dia(date dt){
+    if(!valida_mes(dt.month) && !valida_ano(dt.year)){
+        if(dt.month == 1 || dt.month == 3  ||
+           dt.month == 5 || dt.month == 7  ||
+           dt.month == 8 || dt.month == 10 ||
+           dt.month == 12){
+            if(dt.day >= 1 && dt.day <= 31){
+                return 0;
+            }
+        }
+        else if(dt.month == 4 || dt.month == 6 ||
+                dt.month == 9 || dt.month == 11){
+            if(dt.day >= 1 && dt.day <= 30){
+                return 0;
+            }
+        }
+        else if(dt.month == 2){
+            /* Verifica se o ano é
+             * bissexto */
+            if(!leap_year(dt.year)){
+                if(dt.day >= 1 && dt.day <= 28){
+                    return 0;
+                }
+            }
+            else{
+                if(dt.day >= 1 && dt.day <= 29){
+                    return 0;
+                }
+            }
+        }
+    }
+    return 1;
+}
 
+int valida_mes(int month){
+    if(month > 12 || month < 1){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+
+int valida_ano(int year){
+    if(year > 0){
+        return 0;
+    }
+    return 1;
+}
+
+int valida_data(date dt){
+    if(!valida_dia(dt) && !valida_mes(dt.month) && !valida_ano(dt.year)){
+        return 0;
+    }
+    return 1;
+}
+/*
 void listar_por_data(date dt_inicial, date dt_final){
     
 }
-
+*/
 void separa_data(int dt, int * d, int * m, int * a){
     *d = dt / 1000000;
     *m = (dt / 10000) % 100;
     *a = dt % 10000;
 }
 
+void get_date(int *day, int *month, int *year){
+    time_t tm_now;
+ 
+    time(&tm_now);
+    
+    struct tm *local = localtime(&tm_now);
+    
+    *day = local->tm_mday;
+    *month = local->tm_mon + 1; // month begin in 0 and end in 11
+    *year = local->tm_year + 1900; // year begin in 
+}
+
+void get_time(int *hour, int *minute, int *second){
+    time_t tm_now;
+    
+    time(&tm_now);
+    
+    struct tm *local = localtime(&tm_now);
+    
+    *hour = local->tm_hour;
+    *minute = local->tm_min;
+    *second = local->tm_sec;
+}

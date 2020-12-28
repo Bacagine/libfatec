@@ -22,10 +22,9 @@
  *                  Profº Ciro Cirne Trindade <ciroct@gmail.com>                  *
  *                                                                                *
  * Data: 02/12/2019                                                               *
- * Data da última modificação: 10/08/2020                                         *
+ * Data da última modificação: 01/09/2020                                         *
  **********************************************************************************/
 
-#include <stdio.h>
 #include "../include/fatec/fatec.h"
 
 void clear_buffer(void){
@@ -37,70 +36,102 @@ void buffer_clean(void){
     while(getchar() != '\n');
 }
 
-void print(char *s){
-    while(*s){
-        putchar(*s++);
+void print(const char *str){
+    while(*str){
+        putchar(*str++);
     }
     putchar('\n');
 }
 
-int cat(const char* file){
-    FILE *arq;
-	char line[100000];
-	//for(int i = 0; i < qtd; i++){
-	arq = fopen(file, "r");
-	//}
-	if(arq == NULL){
-		fprintf(stderr, "Erro ao ler o arquivo %s\n", file);
-		return 1;
-	}
-	//for(int count = 0; count < qtd; count++){
-		while(fgets(line, 100000, arq) != NULL){
-			fputs(line, stdout);
-		}
-	//}
-	fclose(arq);
-    return 0;
+void fprint(FILE *__stream, const char *str){
+    while(*str){
+        fputc(*str++, __stream);
+    }
+    putchar('\n');
 }
 
-int head(const char* file){
-    FILE *arq;
-	//for(int i = 0; i < qtd; i++){
-	//}
-	arq = fopen(file, "r");
-	if(arq == NULL){
-		fprintf(stderr, "Erro ao ler o arquivo %s\n", file);
-		return 1;
-	}
-	int count = 0;
-	char line[100000];
+int cat(const char *file){
+    FILE *fp;
+	char line[MAX_LINE_LEN];
 	//for(int count = 0; count < qtd; count++){
-		while(fgets(line, 100000, arq) && count != 10){
-			fputs(line, stdout);
-            count++;
-		}
-	//}
-	fclose(arq);
+        if((fp = fopen(file, "r")) == NULL){
+            return 1;
+        }
+        while(fgets(line, MAX_LINE_LEN, fp) != NULL){
+            fputs(line, stdout);
+        }
+        fclose(fp);
+    //}
     return 0;
 }
-
-int cp(const char* ori, const char* dest){
-    FILE *arq_ori, *arq_dest;
-	arq_ori = fopen(ori, "r");
-	if(arq_ori == NULL){
-		fprintf(stderr, "Erro: Não foi possivel encontrar o arquivo %s", ori);
+/* Em andamento
+int tac(const char *file){
+    FILE *fp;
+	char line[MAX_LINE_LEN];
+	//for(int count = 0; count < qtd; count++){
+        if((fp = fopen(file, "r")) == NULL){
+            return 1;
+        }
+        while(fgets(line, MAX_LINE_LEN, fp) != NULL){
+            fputs(line, stdout);
+        }
+        fclose(fp);
+    //}
+    return 0;
+}
+*/
+int head(const char *file){
+    FILE *fp;
+	//for(int count = 0; count < qtd; count++){
+        if((fp = fopen(file, "r")) == NULL){
+            return 1;
+        }
+        int count = 0;
+        char line[MAX_LINE_LEN];
+        //for(int count = 0; count < qtd; count++){
+            while(fgets(line, MAX_LINE_LEN, fp) && count != 10){
+                fputs(line, stdout);
+                count++;
+            }
+        fclose(fp);
+	//}
+    return 0;
+}
+/* Em andamento
+int tail(const char *file){
+    FILE *fp;
+    //for(int count = 0; count < qtd; count++){
+        if((fp = fopen(file, "r")) == NULL){
+            return 1;
+        }
+        
+        int count = 10;
+        char line[MAX_LINE_LEN];
+        while(fgets(line, MAX_LINE_LEN, fp) != NULL);
+        while(fgets(line, MAX_LINE_LEN, fp) && count != 0){
+            fputs(line, stdout);
+            count--;
+        }
+        fclose(fp);
+    //}
+    return 0;
+}
+*/
+int cp(const char *ori, const char *dest){
+    FILE *fp_ori, *fp_dest;
+	if((fp_ori = fopen(ori, "r"))  == NULL){
 		return 1;
 	}
 	
-	char line[100000];
-	arq_dest = fopen(ori, "w");
+	char line[MAX_LINE_LEN];
+	fp_dest = fopen(dest, "w");
 	
-	while(fgets(line, 100000, arq_ori) != NULL){
-		fputs(line, arq_dest);
+	while(fgets(line, MAX_LINE_LEN, fp_ori) != NULL){
+		fputs(line, fp_dest);
 	}
 
-	fclose(arq_ori);
-	fclose(arq_dest);
+	fclose(fp_ori);
+	fclose(fp_dest);
     
     return 0;
 }
@@ -113,42 +144,62 @@ void clear(void){
 	#endif
 }
 
-void mkfolder(const char *folder, int permission){
+void mkfolders(const char folder[][MAX_FILE_LEN], const int umask, const int qtd){
     int a;
-    #ifdef UNIX
-        a = mkdir(folder, permission);
-    #elif defined(WIN)
-        a = _mkdir(folder, permission);
-    #endif
+    for(int count = 0; count < qtd; count++){
+        a = mkdir(folder[count], umask);
+    }
 }
 
 int grep(const char *word, const char *file){
-    FILE *arq;
+    FILE *fp;
     
-    arq = fopen(file, "r");
-    
-    if(arq == NULL){
-        fprintf(stderr, "Erro ao abrir o arquivo %s!\n", file);
+    if((fp = fopen(file, "r")) == NULL){
         return 1;
     }
     
-    char linha[100000];
+    char line[MAX_LINE_LEN];
     
-    while(fgets(linha, 100000, arq) != NULL){
-        if(strstr(word, linha)){
-            fputs(linha, stdout);
+    while(fgets(line, MAX_LINE_LEN, fp) != NULL){
+        if(strstr(word, line)){
+            fputs(line, stdout);
         }
     }
-    fclose(arq);
+    fclose(fp);
     return 0;
 }
 
-void mv(const char* ori, const char* dest){
+int mv(const char *ori, const char *dest){
+    FILE *fp_ori, *fp_dest;
+    if((fp_ori = fopen(ori, "r")) == NULL){
+        return 1;
+    }
     
+    char line[MAX_LINE_LEN];
+    fp_dest = fopen(dest, "w");
+    while(fgets(line, MAX_LINE_LEN, fp_ori) != NULL){
+        fputs(line, fp_dest);
+    }
+    
+    fclose(fp_ori);
+    fclose(fp_dest);
+    remove(ori);
+    
+    return 0;
 }
 
-void rm(const char* arqs){
-    remove(arqs);
+void rm(const char arqs[][MAX_FILE_LEN], const int qtd){
+    for(int count = 0; count < qtd; count++){
+        remove(arqs[count]);
+    }
+}
+
+int touch(const char *str){
+    FILE *fp;
+    if((fp = fopen(str, "w")) == NULL){
+        return 1;
+    }
+    return 0;
 }
 
 void swap(int *x, int *y){
@@ -157,39 +208,68 @@ void swap(int *x, int *y){
     *x = *y;
     *y = aux;
 }
+
+void rstr(char *str, int length){
+    int count, ch;
+
+    count = 0;
+    while(count < length-1 && (ch = getchar()) != '\n'){
+        str[count] = ch;
+        count++;
+    }
+    str[count] = '\0';
+}
+
+
 /*
-char *rstr(char *str, char *var){
-    return str;
+void rstr(char *str, int length){
+    for(int i = 0; str[i] < length; i++){
+        if(i <= length){
+            str[i] = getchar();
+        }
+        else{
+            clear_buffer();
+        }
+    }
 }
 */
-void developers(int qtd, const char names[][MAX_NAME_LEN],
+void frstr(char* str, int length, FILE* __stream){
+    int count, ch;
+    
+    count = 0;
+    while(count < length-1 && (ch = getc(__stream)) != '\n' && ch != EOF){
+        str[count] = ch;
+        count++;
+    }
+    str[count] = '\0';
+}
+
+/* Em fase de testes
+void developers(const int qtd, const char names[][MAX_NAME_LEN],
                 const char emails[][MAX_NAME_LEN], int year,
                 const char *university, const char *city,
                 const char *desc){
     setlocale(LC_ALL, "");
 
     clear_terminal();
-	if(qtd > 0 && qtd == 1){
-		fprintf(stdout, "************************DESENVOLVEDOR*************************\n");
-	}
-	else{
-		fprintf(stdout, "************************DESENVOLVEDORE(S)************************\n");
-	}
+    if(qtd > 0 && qtd == 1){
+        fprintf(stdout, "************************DESENVOLVEDOR*************************\n");
+    }
+    else{
+        fprintf(stdout, "************************DESENVOLVEDORE(S)************************\n");
+    }
     fprintf(stdout, "*                                                               *\n");
     fprintf(stdout, "* %s  -                %s            -         %d *\n", university, city, year);
     fprintf(stdout, "*---------------------------------------------------------------*\n");
     fprintf(stdout, "*                                                               *\n");
-	for(int count = 0; count < qtd; count++){
-    	fprintf(stdout, "* %s          <%s>   *\n", names[count], emails[count]);
-	}
+    for(int count = 0; count < qtd; count++){
+        fprintf(stdout, "* %s          <%s>   *\n", names[count], emails[count]);
+    }
     fprintf(stdout, "*                                                               *\n");
-	fprintf(stdout, "* %s *", desc);
-	/*
-    fprintf(stdout, "* fatec.h é uma Biblioteca criada pelos alunos de ADSM contendo *\n");
-    fprintf(stdout, "* o prototipo das funções e estruturas que foram usadas no      *\n");
-    fprintf(stdout, "* primeiro ano do curso                                         *\n"); */
+    fprintf(stdout, "* %s *", desc);
     fprintf(stdout, "*                                                               *\n");
     fprintf(stdout, "*****************************************************************\n");
     
-    stay(); /* Simula o system("pause") do windows */
+    stay();
 }
+*/

@@ -1,19 +1,19 @@
 /* Git Hub: https://github.com/Bacagine/fatec
  * 
- * physics.h: Biblioteca com as constantes e os prototipo 
- * das funções de física
+ * physics.h: Library with constants and functions 
+ * prototype of physics
  * 
- * Biblioteca criada por Gustavo Bacagine <gustavo.bacagine@protonmail.com>
+ * Library created by Gustavo Bacagine <gustavo.bacagine@protonmail.com>
  * 
  * Data de início: 19/10/2019
- * Data da última modificação: 20/07/2020
+ * Data da última modificação: 15/08/2020
  */
 
 #ifndef _PHYSICS_H
 #define _PHYSICS_H
 
 #include <math.h>
-#include "my_math.h"
+#include "fmath.h"
 
 #define PLANK_CONST 0000000000000000000000000000000000.662607015 //
 #define UNIVERSAL_GRAVITY 00000000000.6674184 //
@@ -44,7 +44,7 @@ double em(double ec, double ep);
 /* Calcula a Intensidade */
 double im(double force, double time);
 
-/*  */
+/* Calcula a quantidade de movimento */
 double qm(double mass, double velocity);
 
 /* Calcula a pressão */
@@ -53,4 +53,4 @@ double pressure(double force, double area);
 /* Calcula a densidade */
 double density(double mass, double volume);
 
-#endif
+#endif // _PHYSICS_H

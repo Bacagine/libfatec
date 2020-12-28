@@ -19,7 +19,7 @@ OBJDIR = ./obj
 LIBDIR = ./lib
 SRC    = $(wildcard $(SRCDIR)/*.c)
 INC    = -I $(INCDIR)
-OBJ    = $(addprefix $(OBJDIR)/, fatec.o str.o date.o my_math.o physics.o)
+OBJ    = $(addprefix $(OBJDIR)/, fatec.o str.o date.o fmath.o physics.o)
 LIB    = $(LIBDIR)/$(TARGET)
 RM     = rm -rf
 CC     = gcc
@@ -37,22 +37,23 @@ $(OBJDIR):
 $(LIBDIR):
 	mkdir $@
 $(LIB): $(OBJ)
-	$(CC) -shared -o $@ $< $(CFLAGS)
+	$(CC) -shared -o $@  $(OBJ) $(CFLAGS)
 $(OBJDIR)/fatec.o: $(SRCDIR)/fatec.c $(INCDIR)/fatec.h
 	$(CC) -fPIC -c $< $(INC) -o $@ $(CFLAGS)
 $(OBJDIR)/str.o: $(SRCDIR)/str.c $(INCDIR)/str.h
 	$(CC) -fPIC -c $< $(INC) -o $@ $(CFLAGS)
 $(OBJDIR)/date.o: $(SRCDIR)/date.c $(INCDIR)/date.h
 	$(CC) -fPIC -c $< $(INC) -o $@ $(CFLAGS)
-$(OBJDIR)/my_math.o: $(SRCDIR)/my_math.c $(INCDIR)/my_math.h
+$(OBJDIR)/fmath.o: $(SRCDIR)/fmath.c $(INCDIR)/fmath.h
 	$(CC) -fPIC -c $< $(INC) -o $@ $(CFLAGS)
 $(OBJDIR)/physics.o: $(SRCDIR)/physics.c $(INCDIR)/physics.h
 	$(CC) -fPIC -c $< $(INC) -o $@ $(CFLAGS)
 install:
-	cp -r ./fatec/ /usr/include/
+	cp -rv $(INCDIR) /usr/include/
 	cp $(LIB) /usr/lib/
 uninstall:
 	$(RM) /usr/include/fatec
+	$(RM) /usr/lib/$(TARGET)
 clean:
 	$(RM) $(OBJ)
 mrproper: clean

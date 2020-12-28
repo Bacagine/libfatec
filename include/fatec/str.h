@@ -15,13 +15,11 @@
  * junto com o fatec.h; case contrario, veja:
  * <http://www.gnu.org/licenses/>.
  * 
- * Versão: 20.06.15
+ * Developers: Gustavo Bacagine          <gustavo.bacagine@protonmail.com>
+ *             Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com>
  * 
- * Desenvolvedores: Gustavo Bacagine          <gustavo.bacagine@protonmail.com>
- *                  Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com>
- * 
- * Data de ínicio: 20/07/2020
- * Data da última modificação: 21/07/2020
+ * Begin's date: 20/07/2020
+ * Date of last modification: 21/07/2020
  */
 
 #ifndef _STR_H
@@ -30,16 +28,21 @@
 #include <string.h>
 #include <ctype.h>
 
+#define MAX_STR_LEN 51
+
+typedef char * string;
+typedef unsigned char byte;
+
 /* Função criada por Gustavo Bacagine 
  * e Lucas Pereira de Matos
  * 
  * Transforma uma string minuscula em maiuscula */
-char *strupper(char *str);
+string strupper(string str);
 
 /* Função criada por Gustavo Bacagine
  * 
  * Transforma uma string maiuscula em minuscula */
-char *strlower(char *str);
+string strlower(string str);
 
 /* Prototipo criado pelo Profº Ciro Cirne Trindade
  * 
@@ -50,18 +53,18 @@ char *strlower(char *str);
  * Essa função substitui o caractere da posição dada pelo 2o argumento
  * no texto dado pelo 1o argumento pela tag passada como 3o
  * argumento */
-void replace(char *str, int i, const char *newStr);
+void replace(string str, int i, const string new_str);
 
 /* Função criada por Gustavo Bacagine
  * 
  * Verifica se uma string é um
  * palindromo */
-int palindromo(const char *str);
+int palindrome(const string str);
 
 /* Função criada por Gustavo Bacagine
  * 
  * Conta o tamanho de um string */
-int count_str(const char *str);
+int count_str(const string str);
 
 /* Função criada pelo Profº Ciro Cirne Trindade.
  *
@@ -81,6 +84,11 @@ int count_str(const char *str);
  * 
  * Ela inverte os valores de duas strings
  * passadas como argumento */
-void sswap(char *str1, char *str2);
+void sswap(string str1, string str2);
+
+/* Função criada por Gustavo Bacagine
+ * 
+ * Ela inverte uma string */
+void inverse(const string str, string new_str);
 
 #endif // _STR_H
