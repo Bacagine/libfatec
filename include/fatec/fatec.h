@@ -1,6 +1,6 @@
 /* Git Hub: https://github.com/Bacagine/fatec
  * 
- * Copyright (C) 2019 - 2020
+ * Copyright (C) 2019 - 2021
  * 
  * fatec.h: Library was created by ADSM students
  * having the prototype of functions and structures that
@@ -21,9 +21,11 @@
  *             Caio Elias Emerick Regino <caioregino.147@gmail.com>
  *             Luiz Dionizio             <luizgdsoares@hotmail.com>
  *             Profº Ciro Cirne Trindade <ciroct@gmail.com>
+ *             Profª Andreia Machion     <andreia.machion@fatec.sp.gov.br>
  * 
  * Begin's date: 12/02/2019
- * Date of the last modification: 09/01/2020 */
+ * Date of the last modification: 09/01/2021
+ */
 
 #ifndef _FATEC_H
 #define _FATEC_H
@@ -32,36 +34,32 @@
     #include <stdio.h>
 #endif // _STDIO_H
 
-#ifndef _LOCALE_H
-    #include <locale.h>
-#endif // _LOCALE_H
-
-#ifndef _STRING_H
-    #include <string.h>
-#endif // _STRING_H
-
+#include <locale.h>
+#include <string.h>
+#include <stdbool.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <fatec/str.h>
 
-// Verify if the system is the unix like
+// Verify if the system is a unix like
 #ifdef __unix__
     #define UNIX
 //    #include <stdlib.h>
     #define clear_terminal() printf("\033\143");
-    #define stay() printf("\nPress enter to continue..."); getchar();
+    #define stay() printf("\nPress enter to continue. . ."); getchar();
 // Verify if the system is a Windows or if the program was compiled for Windows
 #elif defined(_WIN32) || defined(WIN32) || defined(__MINGW32__) || defined(_MCS_VER)
     #define WIN
     #include <stdlib.h>
     #define clear_terminal() system("cls");
-    #define stay("pause");
+    #define stay() system("pause");
 #endif // __unix__
 
 // Definitions by Gustavo Bacagine
 
 /* Version of libfatec */
-#define __FATEC_VERSION__ "20.12.28"
+#define __FATEC_VERSION__ "21.01.09"
 
 /* Description of the library */
 #define FATEC_DESCRIPTION "libfatec is a library created by ADSM students having\n\
@@ -85,37 +83,43 @@ the prototypo of the functions and structures that was used during the course.\n
  * a line */
 #define MAX_LINE_LEN 100000
 
+#define null NULL
+
+typedef unsigned char byte;
+typedef bool boolean;
+
 /* Following the most used functions by ADSM
  * students of Carapicuíba's FATEC */
 
 /* Function used to avoid 
  * Buffer Overflow
  * 
- * Você pode se perguntar o motivo
- * para se usar uma função propia para
- * limpar o buffer do terminal ao invés
- * de usar uma função já pronta encontrada
- * na propia linguagem
+ * You may wonder why is the reason for
+ * you use a proper function to clear the
+ * terminal buffer instead of using a
+ * ready-made function found in the
+ * language itself.
  * 
- * Existem muitas funções que poderiamos
- * usar como: fflush(), setbuf(), etc...
+ * Existing much fuctions that we could
+ * use as: fflush(), setbuf(), etc...
  * 
- * O motivo para usarmos essa função está
- * no fato de que as funções listadas acima
- * não funcionam em todos os Sistemas Operacionais.
- * O fflush() funciona no Windows mas não funciona no
- * Linux e no MasOS; já o setbuf() funciona tanto no
- * Linux como no Windows, porém não funciona no MasOS.
+ * The reason for we to using this
+ * function is in the fact of the
+ * functions listed above not work on all
+ * Operating Systems.
+ * The fflush() works on Windos but does't
+ * work on Linux and MacOS; setbuf() works
+ * on both Linux and Windows, but does't
+ * work on MacOS.
  * 
- * Está função que usamos funciona em todos os
- * Sistemas Operacionais. Por isso achamos que essa seja
- * a melhor opção a ser usada.
+ * This function works in all Operating Systems. So we
+ * think it is a best option to be used.
  * 
- * OBS: Essa função não foi 
- * desenvolvida por nós. Percebemos 
- * que muitos programadores 
- * se utilizam dessa função e 
- * passamos a usa-lá em nossos programas */
+ * OBS: This function was not
+ * developed by us. We realized
+ * that musch programmers
+ * use this function and 
+ * we started to use it in our programs */
 void clear_buffer(void);
 
 /* Function created by professor Ciro Cirne Trindade
@@ -146,44 +150,44 @@ void buffer_clean(void);
  * 
  * This function works similar to 'puts()'
  * printing a string in the terminal exit. */
-void print(const char *str);
+void print(String str);
 
 /* Function created by Gustavo Bacagine
  * 
  * This function works similiar to 'fputs()'
  * printing a string in a file or in
  * a exit of your choice */
-void fprint(FILE *__stream, const char *str);
+void fprint(FILE *__stream, String str);
 
 /* Function created by Gustavo Bacagine
  * 
  * It shows the content of one
  * file in the beginning until the end */
-int cat(const char *file);
+int cat(const String file);
 
 /* Function created by Gustavo Bacagine
  * 
  * It shows the content of one
  * file in the end until the beginning */
-//int tac(const char *file);
+//int tac(const String file);
 
 /* Function created by Gustavo Bacagine
  * 
  * It shows the 10 first lines
  * of a file */
-int head(const char *file);
+int head(const String file);
 
 /* Function created by Gustavo Bacagine
  * 
  * It shows the 10 last lines
  * of a file */
-//int tail(const char *file);
+//int tail(const String file);
 
 /* Function created by Gustavo Bacagine
  * 
  * It copies the content of a file
  * to the other */
-int cp(const char *ori, const char *dest);
+int cp(const String ori, const String dest);
 
 /* Function created by Gustavo Bacagine
  * 
@@ -197,7 +201,7 @@ void clear(void);
  * pelo developer.
  * Received como 1º argument a string vector with the name of directories,
  * como 2º argument the number of umask and como 3º the quantidade */
-void mkfolders(const char folder[][MAX_FILE_LEN], const int umask, const int qtd);
+void mkfolders(const String folder[MAX_FILE_LEN], const int umask, const int qtd);
 
 /* Function created by Gustavo Bacagine
  * 
@@ -205,7 +209,7 @@ void mkfolders(const char folder[][MAX_FILE_LEN], const int umask, const int qtd
  * Received como 1º argument the word a ser
  * procurada and como 2º the file onde será
  * procurada. */
-int grep(const char *word, const char *file);
+int grep(const String word, const String file);
 
 /* Function created by Gustavo Bacagine
  * 
@@ -214,20 +218,20 @@ int grep(const char *word, const char *file);
  * Recebe como 1º argumento o nome do arquivo
  * e como 2º o destino para onde ele deve ser 
  * movido. */
-int mv(const char *ori, const char *dest);
+int mv(const String ori, const String dest);
 
 /* Function created by Gustavo Bacagine
  * 
  * Remove varios arquivos e diretorios
  * vazios */
-void rm(const char arqs[][MAX_FILE_LEN], const int qtd);
+void rm(const String arqs[MAX_FILE_LEN], const int qtd);
 
 /* Function created by Gustavo Bacagine
  * 
  * Recebe uma string como parametro
  * e cria um arquivo com o nome da
  * string passada */
-int touch(const char *str);
+int touch(const String str);
 
 /* Function created by Gustavo Bacagine
  * 
@@ -239,14 +243,14 @@ void swap(int *x, int *y);
  * 
  * Uma forma alternativa para ler uma string
  * digitada pelo usuario */
-void rstr(char *str, int length);
+void rstr(String str, int length);
 
 /* Function created by Gustavo Bacagine
  * 
  * Armazena o valor de uma string em
  * uma variavel apartir de um arquivo
  * ou da entrada especificada */
-void frstr(char *str, int length, FILE *__stream);
+void frstr(String str, int length, FILE *__stream);
 
 /* Function created by 
  * Gustavo Bacagine
@@ -254,9 +258,28 @@ void frstr(char *str, int length, FILE *__stream);
  * Ela é usada para mostrar
  * os desenvolvedores da 
  * aplicação */
-/*void developers(const int qtd, const char names[][MAX_NAME_LEN], 
-                const char emails[][MAX_NAME_LEN], int year, 
-                const char *university, const char *city, 
-                const char *desc);*/
+/*void developers(const int qtd, const String names[MAX_NAME_LEN], 
+                const String emails[MAX_NAME_LEN], int year, 
+                const String university, const String city, 
+                const String desc);*/
+
+/* Function created by Gustavo Bacagine
+ * 
+ * This function receive a file
+ * with a parameter and return
+ * your size in MB */
+long file_size(const String file);
+
+/* Function created by Gustavo Bacagine
+ * 
+ * Print a line with a simbol passed with first argument */
+void print_line(const char simbol, const int length);
+
+/* Function created by Gustavo Bacagine
+ * 
+ * Print a menu for a software */
+void menu(const String menu_title, const int qtd_options,
+                 String msg_options[MAX_NAME_LEN], const char menu_simbol,
+                 const int line_length);
 
 #endif // _FATEC_H

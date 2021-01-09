@@ -1,29 +1,29 @@
-/**********************************************************************************
- * Git Hub: https://github.com/Bacagine/fatec                                     *
- *                                                                                *
- * Copyright (C) 2019 - 2020                                                      *
- *                                                                                *
- * fatec.c: Arquivo com o desenvolvimento do prototipo das funções da biblioteca  *
- * fatec.h                                                                        *
- *                                                                                *
- * fatec.c é um software livre; você pode redistribui-lo e/ou modificalo sob os   *
- * termos da Licença GNU Lesser General Public publicada pela Free Software       *
- * Foundation; ou versão 2 da licença ou (a seu critério) qualquer                *
- * versão posterior.                                                              *
- *                                                                                *
- * Você deve ter recebido uma copia da Licença GNU Lesser General Public junto    *
- * com o fatec.c; caso contrario, veja: <http://www.gnu.org/licenses/>.           *
- *                                                                                *
- * Desenvolvedores: Gustavo Bacagine          <gustavo.bacagine@protonmail.com>   *
- *                  José Eduardo              <joseeduardoolimpio@gmail.com>      *
- *                  Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com> *
- *                  Caio Elias Emerick Regino <caioregino.147@gmail.com>          *
- *                  Luiz Dionizio             <luizgdsoares@hotmail.com>          *
- *                  Profº Ciro Cirne Trindade <ciroct@gmail.com>                  *
- *                                                                                *
- * Data: 02/12/2019                                                               *
- * Data da última modificação: 01/09/2020                                         *
- **********************************************************************************/
+/* Git Hub: https://github.com/Bacagine/fatec
+ * 
+ * Copyright (C) 2019 - 2021
+ * 
+ * fatec.c: Arquivo com o desenvolvimento do prototipo das funções da biblioteca
+ * fatec.h
+ * 
+ * fatec.c é um software livre; você pode redistribui-lo e/ou modificalo sob os
+ * termos da Licença GNU Lesser General Public publicada pela Free Software
+ * Foundation; ou versão 2 da licença ou (a seu critério) qualquer
+ * versão posterior.
+ * 
+ * Você deve ter recebido uma copia da Licença GNU Lesser General Public junto
+ * com o fatec.c; caso contrario, veja: <http://www.gnu.org/licenses/>.
+ * 
+ * Desenvolvedores: Gustavo Bacagine          <gustavo.bacagine@protonmail.com>
+ *                  José Eduardo              <joseeduardoolimpio@gmail.com>
+ *                  Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com>
+ *                  Caio Elias Emerick Regino <caioregino.147@gmail.com>
+ *                  Luiz Dionizio             <luizgdsoares@hotmail.com>
+ *                  Profº Ciro Cirne Trindade <ciroct@gmail.com>
+ *                  Profª Andreia Machion     <andreia.machion@fatec.sp.gov.br>
+ * 
+ * Data: 02/12/2019
+ * Data da última modificação: 01/09/2020
+ */
 
 #include "../include/fatec/fatec.h"
 
@@ -36,21 +36,21 @@ void buffer_clean(void){
     while(getchar() != '\n');
 }
 
-void print(const char *str){
+void print(String str){
     while(*str){
         putchar(*str++);
     }
     putchar('\n');
 }
 
-void fprint(FILE *__stream, const char *str){
+void fprint(FILE *__stream, String str){
     while(*str){
         fputc(*str++, __stream);
     }
     putchar('\n');
 }
 
-int cat(const char *file){
+int cat(const String file){
     FILE *fp;
 	char line[MAX_LINE_LEN];
 	//for(int count = 0; count < qtd; count++){
@@ -65,7 +65,7 @@ int cat(const char *file){
     return 0;
 }
 /* Em andamento
-int tac(const char *file){
+int tac(const String file){
     FILE *fp;
 	char line[MAX_LINE_LEN];
 	//for(int count = 0; count < qtd; count++){
@@ -80,7 +80,7 @@ int tac(const char *file){
     return 0;
 }
 */
-int head(const char *file){
+int head(const String file){
     FILE *fp;
 	//for(int count = 0; count < qtd; count++){
         if((fp = fopen(file, "r")) == NULL){
@@ -98,7 +98,7 @@ int head(const char *file){
     return 0;
 }
 /* Em andamento
-int tail(const char *file){
+int tail(const String file){
     FILE *fp;
     //for(int count = 0; count < qtd; count++){
         if((fp = fopen(file, "r")) == NULL){
@@ -117,7 +117,7 @@ int tail(const char *file){
     return 0;
 }
 */
-int cp(const char *ori, const char *dest){
+int cp(const String ori, const String dest){
     FILE *fp_ori, *fp_dest;
 	if((fp_ori = fopen(ori, "r"))  == NULL){
 		return 1;
@@ -144,14 +144,14 @@ void clear(void){
 	#endif
 }
 
-void mkfolders(const char folder[][MAX_FILE_LEN], const int umask, const int qtd){
+void mkfolders(const String folder[MAX_FILE_LEN], const int umask, const int qtd){
     int a;
     for(int count = 0; count < qtd; count++){
         a = mkdir(folder[count], umask);
     }
 }
 
-int grep(const char *word, const char *file){
+int grep(const String word, const String file){
     FILE *fp;
     
     if((fp = fopen(file, "r")) == NULL){
@@ -169,7 +169,7 @@ int grep(const char *word, const char *file){
     return 0;
 }
 
-int mv(const char *ori, const char *dest){
+int mv(const String ori, const String dest){
     FILE *fp_ori, *fp_dest;
     if((fp_ori = fopen(ori, "r")) == NULL){
         return 1;
@@ -188,13 +188,13 @@ int mv(const char *ori, const char *dest){
     return 0;
 }
 
-void rm(const char arqs[][MAX_FILE_LEN], const int qtd){
+void rm(const String arqs[MAX_FILE_LEN], const int qtd){
     for(int count = 0; count < qtd; count++){
         remove(arqs[count]);
     }
 }
 
-int touch(const char *str){
+int touch(const String str){
     FILE *fp;
     if((fp = fopen(str, "w")) == NULL){
         return 1;
@@ -209,7 +209,7 @@ void swap(int *x, int *y){
     *y = aux;
 }
 
-void rstr(char *str, int length){
+void rstr(String str, int length){
     int count, ch;
 
     count = 0;
@@ -222,7 +222,7 @@ void rstr(char *str, int length){
 
 
 /*
-void rstr(char *str, int length){
+void rstr(String str, int length){
     for(int i = 0; str[i] < length; i++){
         if(i <= length){
             str[i] = getchar();
@@ -233,7 +233,7 @@ void rstr(char *str, int length){
     }
 }
 */
-void frstr(char* str, int length, FILE* __stream){
+void frstr(String str, int length, FILE* __stream){
     int count, ch;
     
     count = 0;
@@ -247,8 +247,8 @@ void frstr(char* str, int length, FILE* __stream){
 /* Em fase de testes
 void developers(const int qtd, const char names[][MAX_NAME_LEN],
                 const char emails[][MAX_NAME_LEN], int year,
-                const char *university, const char *city,
-                const char *desc){
+                const String university, const String city,
+                const String desc){
     setlocale(LC_ALL, "");
 
     clear_terminal();
@@ -273,3 +273,46 @@ void developers(const int qtd, const char names[][MAX_NAME_LEN],
     stay();
 }
 */
+/*
+long file_size(const String file){
+    FILE *fp;
+    
+    long size;
+    
+    if((fp = fopen(file, "rb")) == NULL){
+        fprintf(stderr, "Error: '%s' no such file or direcotry!\n", file);
+        return -1;
+    }
+    
+    fread();
+    
+//    size = ;
+    
+    fclose(fp);
+    
+    return size;
+}
+*/
+
+void print_line(const char simbol, const int length){
+    int i;
+    for(i = 0; i < length; i++){
+        printf("%c", simbol);
+    }
+}
+
+void menu(const String menu_title, const int qtd_options,
+          String msg_options[MAX_NAME_LEN], const char menu_simbol,
+          const int line_length){
+    int i;
+    
+    print_line(menu_simbol, line_length/2);
+    printf(" %s ", menu_title);
+    print_line(menu_simbol, line_length/2);
+    
+    for(i = 0; i < qtd_options; i++){
+        printf("%c %d) %-25.25s\t%c", menu_simbol, i+1, msg_options[i], menu_simbol);
+    }
+    
+    print_line(menu_simbol, line_length);
+}

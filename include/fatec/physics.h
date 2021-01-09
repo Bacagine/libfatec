@@ -6,14 +6,14 @@
  * Library created by Gustavo Bacagine <gustavo.bacagine@protonmail.com>
  * 
  * Data de início: 19/10/2019
- * Data da última modificação: 15/08/2020
+ * Data da última modificação: 08/01/2021
  */
 
 #ifndef _PHYSICS_H
 #define _PHYSICS_H
 
 #include <math.h>
-#include "fmath.h"
+#include <fatec/fmath.h>
 
 #define PLANK_CONST 0000000000000000000000000000000000.662607015 //
 #define UNIVERSAL_GRAVITY 00000000000.6674184 //

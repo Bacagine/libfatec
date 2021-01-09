@@ -1,6 +1,6 @@
 /* Git Hub: https://github.com/Bacagine/fatec
  * 
- * Copyright (C) 2019 - 2020
+ * Copyright (C) 2019 - 2021
  * 
  * data.h: Biblioteca criada pelos alunos de ADSM
  * contendo o prototipo de funções e estruturas usadas
@@ -19,7 +19,7 @@
  *                  Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com>
  * 
  * Data de ínicio: 20/07/2020
- * Data da última modificação: 17/08/2020
+ * Data da última modificação: 09/01/2021
  */
 
 #ifndef _FDATE_H
@@ -27,6 +27,7 @@
 
 #include <time.h>
 #include <stdbool.h>
+#include <fatec/fatec.h>
 
 /* Structure created by Gustavo Bacagine
  * 
@@ -52,7 +53,7 @@ int compara_datas(date dt1, date dt2);
  * Essa função compara se as duas datas
  * passadas pelo usuário são iguais ou
  * não. */
-bool datas_iguais(date dt1, date dt2);
+boolean datas_iguais(date dt1, date dt2);
 
 /* Function created by Gustavo Bacagine
  * 

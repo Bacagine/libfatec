@@ -7,60 +7,28 @@
 
 #include "../include/fatec/fmath.h"
 
-int soma(int n1, int n2){
+double sum(double n1, double n2){
     return n1 + n2;
 }
 
-int subtracao(int n1, int n2){
+double subtraction(double n1, double n2){
     return n1 - n2;
 }
 
-int multiplicacao(int n1, int n2){
+double multiplication(double n1, double n2){
     return n1 * n2;
 }
 
-int divisao(int n1, int n2){
+double division(double n1, double n2){
     return n1 / n2;
 }
 
-float fsoma(float n1, float n2){
-    return n1 + n2;
-}
-
-float fsubtracao(float n1, float n2){
-    return n1 - n2;
-}
-
-float fmultiplicacao(float n1, float n2){
-    return n1 * n2;
-}
-
-float fdivisao(float n1, float n2){
-    return n1 / n2;
-}
-
-double dsoma(double n1, double n2){
-    return n1 + n2;
-}
-
-double dsubtracao(double n1, double n2){
-    return n1 - n2;
-}
-
-double dmultiplicacao(double n1, double n2){
-    return n1 * n2;
-}
-
-double ddivisao(double n1, double n2){
-    return n1 / n2;
-}
-
-long long fatorial(int n){
+long long factorial(int n){
     if(n == 1 || n == 0){
         return 1;
     }
     else{
-        return n * fatorial(n - 1);
+        return n * factorial(n - 1);
     }
 }
 
@@ -91,17 +59,17 @@ int area(int raio){
     return 4 * PI * my_pow(raio, 2);
 }
 
-int volume_esfera(int raio){
+int esphere_volume(int raio){
     return (4 * PI * my_pow(raio, 3)) / 3;
 }
 
-void transforma_segundos(int s_int, int *h, int *min, int *s){
+void transform_seconds(int s_int, int *h, int *min, int *s){
     *h = s_int / 3600;
     *min = (s_int / 60) % 60;
     *s = s_int % 60;
 }
 
-void circunferencia(float r, float *dim, float *per, float *a){
+void circunference(float r, float *dim, float *per, float *a){
     *dim = 2 * r;
     *per = 2 * PI * r;
     *a = PI * my_pow(r, 2);
@@ -142,17 +110,17 @@ double imc(const double height, const char sexo){
 }
 
 int permutation(int n){
-    return fatorial(n);
+    return factorial(n);
 }
 
 int arranjos(int n, int k){
     int r = n - k;
-    return fatorial(n) / fatorial(r);
+    return factorial(n) / factorial(r);
 }
 
 int combinacao(int n, int k){
     int r = n - k;
-    return fatorial(n) / fatorial(k) * fatorial(r);
+    return factorial(n) / factorial(k) * factorial(r);
 }
 
 int primo(int n){

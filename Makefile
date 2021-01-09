@@ -1,7 +1,7 @@
 # Makefile criado por Gustavo Bacagine <gustavo.bacagine@protonmail.com>
 #
 # Data de criação: 25/12/2019
-# Data da última modificação: 18/05/2020
+# Data da última modificação: 08/01/2021
 #
 # fatec.h é uma Biblioteca criada pelos
 # alunos da FATEC de Carapicuíba do curso de ADSM.
@@ -19,7 +19,7 @@ OBJDIR = ./obj
 LIBDIR = ./lib
 SRC    = $(wildcard $(SRCDIR)/*.c)
 INC    = -I $(INCDIR)
-OBJ    = $(addprefix $(OBJDIR)/, fatec.o str.o date.o fmath.o physics.o)
+OBJ    = $(addprefix $(OBJDIR)/, fatec.o str.o date.o fmath.o physics.o stack.o queue.o)
 LIB    = $(LIBDIR)/$(TARGET)
 RM     = rm -rf
 CC     = gcc
@@ -47,6 +47,10 @@ $(OBJDIR)/date.o: $(SRCDIR)/date.c $(INCDIR)/date.h
 $(OBJDIR)/fmath.o: $(SRCDIR)/fmath.c $(INCDIR)/fmath.h
 	$(CC) -fPIC -c $< $(INC) -o $@ $(CFLAGS)
 $(OBJDIR)/physics.o: $(SRCDIR)/physics.c $(INCDIR)/physics.h
+	$(CC) -fPIC -c $< $(INC) -o $@ $(CFLAGS)
+$(OBJDIR)/stack.o: $(SRCDIR)/stack.c $(INCDIR)/stack.h
+	$(CC) -fPIC -c $< $(INC) -o $@ $(CFLAGS)
+$(OBJDIR)/queue.o: $(SRCDIR)/queue.c $(INCDIR)/queue.h
 	$(CC) -fPIC -c $< $(INC) -o $@ $(CFLAGS)
 install:
 	cp -rv $(INCDIR) /usr/include/

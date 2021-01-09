@@ -1,6 +1,6 @@
 /* Git Hub: https://github.com/Bacagine/fatec
  * 
- * Copyright (C) 2019 - 2020
+ * Copyright (C) 2019 - 2021
  * 
  * my_math.h: Biblioteca criada pelos alunos de ADSM
  * contendo o prototipo de funções usadas para calculos
@@ -18,7 +18,7 @@
  * Desenvolvedor: Gustavo Bacagine          <gustavo.bacagine@protonmail.com>
  * 
  * Data de ínicio: 20/07/2020
- * Data da última modificação: 17/08/2020
+ * Data da última modificação: 08/01/2021
  */
 
 #ifndef _FMATH_H
@@ -40,69 +40,29 @@ typedef struct{
 
 /* Function created by Gustavo Bacagine.
  *
- * Essa função soma dois numeros inteiros */
-int soma(int n1, int n2);
-
-/* Function created by Gustavo Bacagine.
- *
- * Essa função subtração dois numeros inteiros */
-int subtracao(int n1, int n2);
-
-/* Function created by Gustavo Bacagine.
- *
- * Essa função multiplicação dois numeros inteiros */
-int multiplicacao(int n1, int n2);
-
-/* Function created by Gustavo Bacagine.
- *
- * Essa função divide dois numeros inteiros */
-int divisao(int n1, int n2);
-
-/* Function created by Gustavo Bacagine.
- *
- * Essa função soma dois numeros do tipo ponto flutuante */
-float fsoma(float n1, float n2);
-
-/* Function created by Gustavo Bacagine.
- *
- * Essa função subtração dois numeros numeros do tipo ponto flutuante */
-float fsubtracao(float n1, float n2);
-
-/* Function created by Gustavo Bacagine.
- *
- * Essa função multiplicação dois numeros numeros do tipo ponto flutuante */
-float fmultiplicacao(float n1, float n2);
-
-/* Function created by Gustavo Bacagine.
- *
- * Essa função divide dois numeros numeros do tipo ponto flutuante */
-float fdivisao(float n1, float n2);
-
-/* Function created by Gustavo Bacagine.
- *
  * Essa função soma dois numeros do tipo double */
-double dsoma(double n1, double n2);
+double sum(double n1, double n2);
 
 /* Function created by Gustavo Bacagine.
  *
  * Essa função subtração dois numeros numeros do tipo double */
-double dsubtracao(double n1, double n2);
+double subtraction(double n1, double n2);
 
 /* Function created by Gustavo Bacagine.
  *
  * Essa função multiplicação dois numeros numeros do tipo double */
-double dmultiplicacao(double n1, double n2);
+double multiplication(double n1, double n2);
 
 /* Function created by Gustavo Bacagine.
  *
  * Essa função divide dois numeros numeros do tipo double */
-double ddivisao(double n1, double n2);
+double division(double n1, double n2);
 
 /* Function created by Gustavo Bacagine.
  * 
  * Essa função faz um calculo de um número fatorial
  * de maneira recursiva */
-long long fatorial(int n);
+long long factorial(int n);
 
 /* Function created by Gustavo Bacagine
  * 
@@ -130,7 +90,7 @@ int area(int raio);
 /* Function created by Gustavo Bacagine
  * 
  * Calcula o volume de uma esfera */
-int volume_esfera(int raio);
+int esphere_volume(int raio);
 
 // Lista 5 Ponteiros 2019 2º Semestre
 
@@ -138,13 +98,13 @@ int volume_esfera(int raio);
  *
  * Essa função transforma o tempo digitado pelo usuario em
  * segundos para o formato 00h:00min:00s */
-void transforma_segundos(int, int *, int *, int *);
+void transform_seconds(int, int *, int *, int *);
 
 /* Function created by Gustavo Bacagine and José Eduardo.
  *
  * Essa função calcula o diâmetro, perímetro e área de uma 
  * circunferência. */
-void circunferencia(float, float *,float *,float *);
+void circunference(float, float *,float *,float *);
 
 /* Function created by Gustavo Bacagine and José Eduardo.
  *

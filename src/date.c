@@ -30,11 +30,11 @@ int compara_datas(date dt1, date dt2){
     
     /* Verifica se as datas 
      * são iguais */
-    bool dts_iguais = d1 == d2;
+    boolean dts_iguais = d1 == d2;
     /* Verifica se a primeira 
      * data é menor que a 
      * segunda */
-    bool dt1_menor = d1 < d2;
+    boolean dt1_menor = d1 < d2;
     
     /* Se as datas forem iguais a
      * função retorna 0 */
@@ -55,28 +55,19 @@ int compara_datas(date dt1, date dt2){
     }
 }
 
-bool datas_iguais(date dt1, date dt2){
+boolean datas_iguais(date dt1, date dt2){
     int d1, d2;
     
     d1 = dt1.year * 10000 + dt1.month * 100 + dt1.day;
     d2 = dt2.year * 10000 + dt2.month * 100 + dt2.day;
     
-    /* Se as datas forem iguais a
-     * função retorna verdadeiro */
-    if(d1 == d2){
-        return true;
-    }
-    /* Se as datas forem diferentes
-     * a função retorna false */
-    else{
-        return false;
-    }
+    return d1 == d2;
 }
 
 int leap_year(int year){
     /* A is a leap year quando é divisivel to
      * 4 or to 400 but not to 100 */
-    bool leap = (year % 4 == 0 || year % 400 == 0)
+    boolean leap = (year % 4 == 0 || year % 400 == 0)
                  && year % 100 != 0;
     if(leap == true){
         return 0;
@@ -141,17 +132,17 @@ int valida_data(date dt){
     return 1;
 }
 /*
-void listar_por_data(date dt_inicial, date dt_final){
+void  listar_por_data(date dt_inicial, date dt_final){
     
 }
 */
-void separa_data(int dt, int * d, int * m, int * a){
+void  separa_data(int dt, int * d, int * m, int * a){
     *d = dt / 1000000;
     *m = (dt / 10000) % 100;
     *a = dt % 10000;
 }
 
-void get_date(int *day, int *month, int *year){
+void  get_date(int *day, int *month, int *year){
     time_t tm_now;
  
     time(&tm_now);
@@ -163,7 +154,7 @@ void get_date(int *day, int *month, int *year){
     *year = local->tm_year + 1900; // year begin in 
 }
 
-void get_time(int *hour, int *minute, int *second){
+void  get_time(int *hour, int *minute, int *second){
     time_t tm_now;
     
     time(&tm_now);

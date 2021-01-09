@@ -25,17 +25,26 @@
  * Data da última modificação: 17/02/2020                                         *
  **********************************************************************************/
 
-#include <stdio.h>
-#include <string.h>
-#include "../include/fatec/fatec.h"
+#include "../include/fatec/str.h"
 
-void replace(char *str, int i, const char *newStr){
-    char oldStr[101];
-    int tamNewStr;
+void replace(String txt, int i, const String str){
+    char aux[strlen(txt)];
     
-    tamNewStr = strlen(newStr);
+    int count;
     
-    strcpy(oldStr, str + i + 1);
-    strcpy(str + i, newStr);
-    strcpy(str + i + tamNewStr, oldStr);
+    /* Copy all text before index
+     * that will modified */
+    for(count = 0; count < i; count++){
+        aux[count] = txt[count];
+    }
+    aux[count] = '\0';
+        
+    strcat(aux, str);
+    
+    /* IMPORTANT: DON'T MODIFIED THIS PART OF CODE! IT IS WORKING  */
+    for(count = strlen(aux); count < strlen(txt)+strlen(str); count++){
+        aux[count] = txt[count-strlen(str)+1];
+    }
+    
+    strcpy(txt, aux);
 }
