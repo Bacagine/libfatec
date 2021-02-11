@@ -3,17 +3,17 @@
  * Development by Gustavo Bacagine <gustavo.bacagine@protonmail.com>
  * 
  * Begin's date: 30/12/2020
- * Date of last modification: 07/01/2021
+ * Date of last modification: 11/02/2021
  */
 
 #include <stdio.h>
 #include "../include/fatec/stack.h"
 
-boolean s_is_empty(void){
+bool s_is_empty(void){
     return s_top == -1;
 }
 
-boolean s_is_full(void){
+bool s_is_full(void){
     return s_top == s_length-1;
 }
 

@@ -4,16 +4,17 @@
  * and adapted for C by Gustavo Bacagine <gustavo.bacagine@protonmail.com>
  * 
  * Begin's date: 07/01/2021
+ * Date of last modification: 11/02/2021
  */
 
 #include <stdio.h>
 #include "../include/fatec/queue.h"
 
-boolean q_is_empty(void){
+bool q_is_empty(void){
     return q_count == 0;
 }
 
-boolean q_is_full(void){
+bool q_is_full(void){
     return q_count == q_capacity;
 }
 

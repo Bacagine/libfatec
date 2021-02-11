@@ -22,7 +22,7 @@
  *                  Profª Andreia Machion     <andreia.machion@fatec.sp.gov.br>
  * 
  * Data: 02/12/2019
- * Data da última modificação: 01/09/2020
+ * Data da última modificação: 11/02/2021
  */
 
 #include "../include/fatec/fatec.h"
@@ -36,21 +36,21 @@ void buffer_clean(void){
     while(getchar() != '\n');
 }
 
-void print(String str){
+void print(char * str){
     while(*str){
         putchar(*str++);
     }
     putchar('\n');
 }
 
-void fprint(FILE *__stream, String str){
+void fprint(FILE *__stream, char * str){
     while(*str){
         fputc(*str++, __stream);
     }
     putchar('\n');
 }
 
-int cat(const String file){
+int cat(const char * file){
     FILE *fp;
 	char line[MAX_LINE_LEN];
 	//for(int count = 0; count < qtd; count++){
@@ -65,7 +65,7 @@ int cat(const String file){
     return 0;
 }
 /* Em andamento
-int tac(const String file){
+int tac(const char * file){
     FILE *fp;
 	char line[MAX_LINE_LEN];
 	//for(int count = 0; count < qtd; count++){
@@ -80,7 +80,7 @@ int tac(const String file){
     return 0;
 }
 */
-int head(const String file){
+int head(const char * file){
     FILE *fp;
 	//for(int count = 0; count < qtd; count++){
         if((fp = fopen(file, "r")) == NULL){
@@ -98,7 +98,7 @@ int head(const String file){
     return 0;
 }
 /* Em andamento
-int tail(const String file){
+int tail(const char * file){
     FILE *fp;
     //for(int count = 0; count < qtd; count++){
         if((fp = fopen(file, "r")) == NULL){
@@ -117,7 +117,7 @@ int tail(const String file){
     return 0;
 }
 */
-int cp(const String ori, const String dest){
+int cp(const char * ori, const char * dest){
     FILE *fp_ori, *fp_dest;
 	if((fp_ori = fopen(ori, "r"))  == NULL){
 		return 1;
@@ -144,14 +144,14 @@ void clear(void){
 	#endif
 }
 
-void mkfolders(const String folder[MAX_FILE_LEN], const int umask, const int qtd){
+void mkfolders(const char * folder[MAX_FILE_LEN], const int umask, const int qtd){
     int a;
     for(int count = 0; count < qtd; count++){
         a = mkdir(folder[count], umask);
     }
 }
 
-int grep(const String word, const String file){
+int grep(const char * word, const char * file){
     FILE *fp;
     
     if((fp = fopen(file, "r")) == NULL){
@@ -169,7 +169,7 @@ int grep(const String word, const String file){
     return 0;
 }
 
-int mv(const String ori, const String dest){
+int mv(const char * ori, const char * dest){
     FILE *fp_ori, *fp_dest;
     if((fp_ori = fopen(ori, "r")) == NULL){
         return 1;
@@ -188,13 +188,13 @@ int mv(const String ori, const String dest){
     return 0;
 }
 
-void rm(const String arqs[MAX_FILE_LEN], const int qtd){
+void rm(const char * arqs[MAX_FILE_LEN], const int qtd){
     for(int count = 0; count < qtd; count++){
         remove(arqs[count]);
     }
 }
 
-int touch(const String str){
+int touch(const char * str){
     FILE *fp;
     if((fp = fopen(str, "w")) == NULL){
         return 1;
@@ -209,7 +209,7 @@ void swap(int *x, int *y){
     *y = aux;
 }
 
-void rstr(String str, int length){
+void rstr(char * str, int length){
     int count, ch;
 
     count = 0;
@@ -222,7 +222,7 @@ void rstr(String str, int length){
 
 
 /*
-void rstr(String str, int length){
+void rstr(char * str, int length){
     for(int i = 0; str[i] < length; i++){
         if(i <= length){
             str[i] = getchar();
@@ -233,7 +233,7 @@ void rstr(String str, int length){
     }
 }
 */
-void frstr(String str, int length, FILE* __stream){
+void frstr(char * str, int length, FILE* __stream){
     int count, ch;
     
     count = 0;
@@ -247,8 +247,8 @@ void frstr(String str, int length, FILE* __stream){
 /* Em fase de testes
 void developers(const int qtd, const char names[][MAX_NAME_LEN],
                 const char emails[][MAX_NAME_LEN], int year,
-                const String university, const String city,
-                const String desc){
+                const char * university, const char * city,
+                const char * desc){
     setlocale(LC_ALL, "");
 
     clear_terminal();
@@ -274,7 +274,7 @@ void developers(const int qtd, const char names[][MAX_NAME_LEN],
 }
 */
 /*
-long file_size(const String file){
+long file_size(const char * file){
     FILE *fp;
     
     long size;
@@ -301,8 +301,8 @@ void print_line(const char simbol, const int length){
     }
 }
 
-void menu(const String menu_title, const int qtd_options,
-          String msg_options[MAX_NAME_LEN], const char menu_simbol,
+void fmenu(const char * menu_title, const int qtd_options,
+          char * msg_options[MAX_NAME_LEN], const char menu_simbol,
           const int line_length){
     int i;
     

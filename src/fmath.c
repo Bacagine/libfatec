@@ -2,7 +2,7 @@
  * 
  * 
  * 
- * Date of last modification: 18/08/2020
+ * Date of last modification: 11/02/2021
  */
 
 #include "../include/fatec/fmath.h"

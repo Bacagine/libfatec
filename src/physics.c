@@ -13,7 +13,7 @@ double weight(double mass, double gravity){
 }
 
 double ec(double mass, double vm){
-    return (mass * my_pow(vm, 2)) / 2;
+    return (mass * pow(vm, 2)) / 2;
 }
 
 double epg(double mass, double gravity, double heigth){
@@ -21,7 +21,7 @@ double epg(double mass, double gravity, double heigth){
 }
 
 double epe(double k, double x){
-    return (k * my_pow(x, 2)) / 2;
+    return (k * pow(x, 2)) / 2;
 }
 
 double em(double ec, double ep){

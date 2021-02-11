@@ -18,7 +18,7 @@
  * Desenvolvedor: Gustavo Bacagine          <gustavo.bacagine@protonmail.com>
  * 
  * Data de ínicio: 20/07/2020
- * Data da última modificação: 08/01/2021
+ * Data da última modificação: 11/02/2021
  */
 
 #ifndef _FMATH_H

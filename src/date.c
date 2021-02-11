@@ -17,7 +17,7 @@
  *             Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com>
  * 
  * Begin's date: 20/07/2020
- * Date of last modification: 17/08/2020
+ * Date of last modification: 11/02/2021
  */
 
 #include "../include/fatec/date.h"
@@ -30,11 +30,11 @@ int compara_datas(date dt1, date dt2){
     
     /* Verifica se as datas 
      * são iguais */
-    boolean dts_iguais = d1 == d2;
+    bool dts_iguais = d1 == d2;
     /* Verifica se a primeira 
      * data é menor que a 
      * segunda */
-    boolean dt1_menor = d1 < d2;
+    bool dt1_menor = d1 < d2;
     
     /* Se as datas forem iguais a
      * função retorna 0 */
@@ -55,7 +55,7 @@ int compara_datas(date dt1, date dt2){
     }
 }
 
-boolean datas_iguais(date dt1, date dt2){
+bool datas_iguais(date dt1, date dt2){
     int d1, d2;
     
     d1 = dt1.year * 10000 + dt1.month * 100 + dt1.day;
@@ -67,7 +67,7 @@ boolean datas_iguais(date dt1, date dt2){
 int leap_year(int year){
     /* A is a leap year quando é divisivel to
      * 4 or to 400 but not to 100 */
-    boolean leap = (year % 4 == 0 || year % 400 == 0)
+    bool leap = (year % 4 == 0 || year % 400 == 0)
                  && year % 100 != 0;
     if(leap == true){
         return 0;

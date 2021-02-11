@@ -19,7 +19,7 @@
  *             Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com>
  * 
  * Begin's date: 20/07/2020
- * Date of last modification: 09/01/2021
+ * Date of last modification: 11/02/2021
  */
 
 #ifndef _STR_H
