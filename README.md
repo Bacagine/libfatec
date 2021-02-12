@@ -1,16 +1,14 @@
-# fatec.h
+# libfatec
 
-fatec.h é uma Biblioteca criada pelos 
-alunos da FATEC de Carapicuíba do curso de ADSM.
+libfatec is a C library created by FATEC Carapicuíba students from the Systems Analysis and Development course.
 
-Esta biblioteca contem o prototipo das 
-funções e estruturas que foram usadas no 
-primeiro ano do curso 
+This library was created because we believe that the functions and structures contained in it can be useful and help other developers like us.
  
-fatec.h é um software livre; você pode redistribui-lo e/ou
-modificalo sob os termos da GNU GENERAL PUBLIC LICENSE 
-versão 2 publicada pela Free Software Foundation; ou
-qualquer versão posterior (a seu critério).
+libfatec is a free software; you can you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2 of the License, or (at your option) any later version.
 
-Você deve ter recebido uma cópia da GNU GENERAL PUBLIC LICENSE
-junto com o fatec.h; case contrario, veja: <http://www.gnu.org/licenses/>.
+You should have received a copy of the GNU Lesser General Public
+License along with the GNU C Library; if not, see
+<https://www.gnu.org/licenses/>.
