@@ -24,7 +24,7 @@
  *             Profª Andreia Machion     <andreia.machion@fatec.sp.gov.br>
  * 
  * Begin's date: 12/02/2019
- * Date of the last modification: 11/02/2021
+ * Date of the last modification: 12/02/2021
  */
 
 #ifndef _FATEC_H
@@ -59,7 +59,7 @@
 // Definitions by Gustavo Bacagine
 
 /* Version of libfatec */
-#define __FATEC_VERSION__ "21.02.11"
+#define __FATEC_VERSION__ "21.02.12"
 
 /* Description of the library */
 #define FATEC_DESCRIPTION "libfatec is a library created by ADSM students having\n\
@@ -68,7 +68,7 @@ the prototypo of the functions and structures that was used during the course.\n
 /* Error message in case 
  * user type an 
  * invalid option */
-#define MENU_ERROR "ERROR: Invalid option!"
+//#define MENU_ERROR "ERROR: Invalid option!"
 
 /* Max length for
  * a name */
@@ -128,36 +128,12 @@ void clear_buffer(void);
  * buffer. */
 void buffer_clean(void);
 
-/* Function created by Gustavo Bacagine
- * 
- * Ela printa um menu no terminal
- * Foi feita como um exemplo apenas pois,
- * o menu normalmente fica na função main.
- * Você pode usa-lá para criar seus propios menus*/
-//void menu(void);
-
 /* Função criada pelo Profº Ciro Cirne Trindade.
  *
  * Essa função receba uma string de 0s e 1s, interprete
  * essa string como um número binário e 
  * informe o valor desse número na base decimal. */
 //void binario_decimal(void);
-
-/* This function was created by Herbert Schildt
- * We took it in his book "C Completo e Total"
- * and we did an adaptation that make the function jumps one
- * line at the end of the string.
- * 
- * This function works similar to 'puts()'
- * printing a string in the terminal exit. */
-void print(char *str);
-
-/* Function created by Gustavo Bacagine
- * 
- * This function works similiar to 'fputs()'
- * printing a string in a file or in
- * a exit of your choice */
-void fprint(FILE *__stream, char *str);
 
 /* Function created by Gustavo Bacagine
  * 

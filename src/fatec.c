@@ -22,7 +22,7 @@
  *                  Profª Andreia Machion     <andreia.machion@fatec.sp.gov.br>
  * 
  * Data: 02/12/2019
- * Data da última modificação: 11/02/2021
+ * Data da última modificação: 12/02/2021
  */
 
 #include "../include/fatec/fatec.h"
@@ -34,20 +34,6 @@ void clear_buffer(void){
 
 void buffer_clean(void){
     while(getchar() != '\n');
-}
-
-void print(char * str){
-    while(*str){
-        putchar(*str++);
-    }
-    putchar('\n');
-}
-
-void fprint(FILE *__stream, char * str){
-    while(*str){
-        fputc(*str++, __stream);
-    }
-    putchar('\n');
 }
 
 int cat(const char * file){
