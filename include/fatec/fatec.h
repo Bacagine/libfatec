@@ -24,7 +24,7 @@
  *             Profª Andreia Machion     <andreia.machion@fatec.sp.gov.br>
  * 
  * Begin's date: 12/02/2019
- * Date of the last modification: 12/02/2021
+ * Date of the last modification: 17/03/2021
  */
 
 #ifndef _FATEC_H
@@ -59,7 +59,7 @@
 // Definitions by Gustavo Bacagine
 
 /* Version of libfatec */
-#define __FATEC_VERSION__ "21.02.12"
+#define __FATEC_VERSION__ "21.03.17"
 
 /* Description of the library */
 #define FATEC_DESCRIPTION "libfatec is a library created by ADSM students having\n\

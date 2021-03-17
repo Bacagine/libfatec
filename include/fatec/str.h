@@ -19,7 +19,7 @@
  *             Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com>
  * 
  * Begin's date: 20/07/2020
- * Date of last modification: 11/02/2021
+ * Date of last modification: 17/03/2021
  */
 
 #ifndef _STR_H
@@ -29,6 +29,32 @@
 #include <ctype.h>
 
 #define MAX_STR_LEN 51
+
+/* FATEC itoa.
+ * 
+ * It is a implementation of itoa
+ * function.
+ * 
+ * This macro transforms an integer
+ * passed with first argument 
+ * into a string passed with second
+ * argument according to the base
+ * passes with third argument */
+#define f_itoa(value, str, base){ \
+    if(base == 10){\
+        sprintf(str, "%d", value);\
+    }\
+    else if(base == 8){\
+        sprintf(str, "%o", value);\
+    }\
+    else if(base == 16){\
+        sprintf(str, "%x", value);\
+    }\
+    else{\
+        NULL;\
+    }\
+    str;\
+}
 
 typedef char * String;
 
