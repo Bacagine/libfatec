@@ -142,7 +142,7 @@ void  separa_data(int dt, int * d, int * m, int * a){
     *a = dt % 10000;
 }
 
-void  get_date(int *day, int *month, int *year){
+void get_date(int *day, int *month, int *year){
     time_t tm_now;
  
     time(&tm_now);
@@ -154,7 +154,7 @@ void  get_date(int *day, int *month, int *year){
     *year = local->tm_year + 1900; // year begin in 
 }
 
-void  get_time(int *hour, int *minute, int *second){
+void get_time(int *hour, int *minute, int *second){
     time_t tm_now;
     
     time(&tm_now);

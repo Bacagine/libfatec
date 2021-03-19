@@ -280,25 +280,58 @@ long file_size(const char * file){
 }
 */
 
-void print_line(const char simbol, const int length){
+void print_line(const char simbol, const int length, bool bold){
     int i;
-    for(i = 0; i < length; i++){
-        printf("%c", simbol);
+    if(bold == true){
+        for(i = 0; i < length; i++){
+            printf("\033[1m%c\033[m", simbol);
+        }
+    }
+    else{
+        for(i = 0; i < length; i++){
+            putchar(simbol);
+        }
     }
 }
 
 void fmenu(const char * menu_title, const int qtd_options,
-          char * msg_options[MAX_NAME_LEN], const char menu_simbol,
-          const int line_length){
+          char * msg_options[qtd_options], const char menu_simbol,
+          int line_length, bool bold){
     int i;
     
-    print_line(menu_simbol, line_length/2);
-    printf(" %s ", menu_title);
-    print_line(menu_simbol, line_length/2);
+    print_line(menu_simbol, line_length/2, bold);
+    if(bold == true){
+        printf("\033[1m %s \033[1m", menu_title);
+    }
+    else{
+        printf(" %s ", menu_title);
+    }
+    print_line(menu_simbol, line_length/2, bold);
+    putchar('\n');
     
-    for(i = 0; i < qtd_options; i++){
-        printf("%c %d) %-25.25s\t%c", menu_simbol, i+1, msg_options[i], menu_simbol);
+    if(bold == true){
+        for(i = 0; i < qtd_options; i++){
+            printf("\033[1m%c %d) %-25.25s\t %c\033[1m\n", menu_simbol, i+1, msg_options[i], menu_simbol);
+        }
+    }
+    else{
+        for(i = 0; i < qtd_options; i++){
+            printf("%c %d) %-25.25s\t %c\n", menu_simbol, i+1, msg_options[i], menu_simbol);
+        }
     }
     
-    print_line(menu_simbol, line_length);
+    if(line_length % 2 == 0){
+        line_length += strlen(menu_title)+2;
+    }
+    else{
+        line_length +=strlen(menu_title)+1;
+    }
+    
+    print_line(menu_simbol, line_length, bold);
+    putchar('\n');
+}
+
+void free_ptr(void *ptr){
+    free(ptr);
+    ptr = NULL;
 }

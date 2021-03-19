@@ -24,7 +24,7 @@
  *             Profª Andreia Machion     <andreia.machion@fatec.sp.gov.br>
  * 
  * Begin's date: 12/02/2019
- * Date of the last modification: 17/03/2021
+ * Date of the last modification: 18/03/2021
  */
 
 #ifndef _FATEC_H
@@ -34,6 +34,7 @@
     #include <stdio.h>
 #endif // _STDIO_H
 
+#include <stdlib.h>
 #include <locale.h>
 #include <string.h>
 #include <stdbool.h>
@@ -59,7 +60,7 @@
 // Definitions by Gustavo Bacagine
 
 /* Version of libfatec */
-#define __FATEC_VERSION__ "21.03.17"
+#define __FATEC_VERSION__ "21.03.18"
 
 /* Description of the library */
 #define FATEC_DESCRIPTION "libfatec is a library created by ADSM students having\n\
@@ -249,13 +250,16 @@ long file_size(const char *file);
 /* Function created by Gustavo Bacagine
  * 
  * Print a line with a simbol passed with first argument */
-void print_line(const char simbol, const int length);
+void print_line(const char simbol, const int length, bool bold);
 
 /* Function created by Gustavo Bacagine
  * 
  * Print a menu for a software */
 void fmenu(const char *menu_title, const int qtd_options,
-                 char *msg_options[MAX_NAME_LEN], const char menu_simbol,
-                 const int line_length);
+                 char *msg_options[qtd_options], const char menu_simbol,
+                 int line_length, bool bold);
+
+/* Free a pointer */
+void free_ptr(void *ptr);
 
 #endif // _FATEC_H

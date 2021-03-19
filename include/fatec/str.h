@@ -19,7 +19,7 @@
  *             Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com>
  * 
  * Begin's date: 20/07/2020
- * Date of last modification: 17/03/2021
+ * Date of last modification: 18/03/2021
  */
 
 #ifndef _STR_H
@@ -40,20 +40,22 @@
  * into a string passed with second
  * argument according to the base
  * passes with third argument */
-#define f_itoa(value, str, base){ \
+#define fitoa(value, str, base){ \
     if(base == 10){\
         sprintf(str, "%d", value);\
+        str;\
     }\
     else if(base == 8){\
         sprintf(str, "%o", value);\
+        str;\
     }\
     else if(base == 16){\
         sprintf(str, "%x", value);\
+        str;\
     }\
     else{\
         NULL;\
     }\
-    str;\
 }
 
 typedef char * String;
