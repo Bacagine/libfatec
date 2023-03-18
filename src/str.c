@@ -1,7 +1,7 @@
 /* 
  * 
  * 
- * Date of last modification: 09/01/2021
+ * Date of last modification: 03/17/2023
  */
 
 #include "../include/fatec/str.h"
@@ -69,3 +69,12 @@ void sswap(String str1, String str2){
     strcpy(str1, str2);
     strcpy(str2, &aux);
 }
+
+void remove_new_line(char *str){
+	int i = strlen(str) - 1;
+
+	if(str[i] == '\n'){
+		str[i] = '\0';
+	}
+}
+

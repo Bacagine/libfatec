@@ -60,7 +60,7 @@
 // Definitions by Gustavo Bacagine
 
 /* Version of libfatec */
-#define __FATEC_VERSION__ "21.03.18"
+#define __FATEC_VERSION__ "23.03.17"
 
 /* Description of the library */
 #define FATEC_DESCRIPTION "libfatec is a library created by ADSM students having\n\

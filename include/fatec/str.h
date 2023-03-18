@@ -115,4 +115,7 @@ void sswap(String str1, String str2);
  * Ela inverte uma String */
 void inverse(const String str, String new_str);
 
+/* Remove \n of a string */
+void remove_new_line(char *str);
+
 #endif // _STR_H
