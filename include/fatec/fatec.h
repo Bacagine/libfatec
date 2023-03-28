@@ -49,18 +49,20 @@
 //    #include <stdlib.h>
     #define clear_terminal() printf("\033\143");
     #define stay() printf("\nPress enter to continue. . ."); getchar();
+    #define NEW_LINE '\n'
 // Verify if the system is a Windows or if the program was compiled for Windows
 #elif defined(_WIN32) || defined(WIN32) || defined(__MINGW32__) || defined(_MCS_VER)
     #define WIN
     #include <stdlib.h>
     #define clear_terminal() system("cls");
     #define stay() system("pause");
+    #define NEW_LINE "\r\n"
 #endif // __unix__
 
 // Definitions by Gustavo Bacagine
 
 /* Version of libfatec */
-#define __FATEC_VERSION__ "23.03.17"
+#define __FATEC_VERSION__ "23.03.27"
 
 /* Description of the library */
 #define FATEC_DESCRIPTION "libfatec is a library created by ADSM students having\n\
