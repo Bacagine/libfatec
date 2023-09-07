@@ -28,7 +28,7 @@
 #include <string.h>
 #include <ctype.h>
 
-//#define MAX_STR_LEN 51
+#define MAX_STR_LEN 51
 
 /* Used for colored strings */
 #define BLACK_STR     "\033[0;30m"
