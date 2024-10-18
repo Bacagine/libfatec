@@ -1,7 +1,5 @@
 # libfatec
 
-# NOTE: THIS LIBRARY WAS DEPRECATED, MY NEW C LIBRARY IS [libcutils](https://github.com/Bacagine/cutils/)
-
 libfatec is a C library created by FATEC Carapicuíba students from the Systems Analysis and Development course.
 
 This library was created because we believe that the functions and structures contained in it can be useful and help other developers like us.
